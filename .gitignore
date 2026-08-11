@@ -4,15 +4,15 @@ __pycache__/
 venv/
 env/
 .pytest_cache/
-.ipynb_checkpoints/
-.DS_Store
-Thumbs.db
+.mypy_cache/
+.ruff_cache/
+*.db
+*.sqlite3
+
+# Real configuration and secrets. .env.example is committed; .env is not.
+.env
+
 .vscode/
 .idea/
-
-# The real classroom data is not committed: it is participant data, and each
-# run of the project has its own. The template and the synthetic demo are.
-data/human_experiment.csv
-
-# Scratch output from experimenting with settings.
-results/scratch/
+.DS_Store
+Thumbs.db

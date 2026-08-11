@@ -1,0 +1,25 @@
+# PostgreSQL for local development.
+#   docker compose up -d
+# Then point DATABASE_URL at localhost:5432 as in .env.example.
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: pd_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pd_user
+      POSTGRES_PASSWORD: pd_password
+      POSTGRES_DB: prisoners_dilemma
+    ports:
+      - "5432:5432"
+    volumes:
+      - pd_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pd_user -d prisoners_dilemma"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pd_pgdata:

@@ -1,5 +1,28 @@
-# Core project dependencies.
-# The game engine, strategies and tournament run on the standard library alone;
-# pandas and matplotlib are used for the results tables and the charts.
-pandas>=2.0
-matplotlib>=3.7
+# Web framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+
+# Validation and settings
+pydantic>=2.9.0
+pydantic-settings>=2.6.0
+email-validator>=2.2.0
+python-dotenv>=1.0.0
+
+# Database
+SQLAlchemy>=2.0.36
+alembic>=1.14.0
+psycopg[binary]>=3.2.0
+
+# Authentication
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+bcrypt<4.1
+
+# Analysis
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Tests
+pytest>=8.3.0
+httpx>=0.28.0

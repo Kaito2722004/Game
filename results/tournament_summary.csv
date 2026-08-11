@@ -1,7 +1,0 @@
-Rank,Code,Strategy,Total Score,Average,Cooperation Rate,Defection Rate,Rounds Played
-1,GT,Grim Trigger,1282.0,2.564,0.604,0.396,500.0
-2,TFT,Tit-for-Tat,1219.0,2.438,0.7,0.3,500.0
-3,TF2T,Tit-for-Two-Tats,1192.0,2.384,0.744,0.256,500.0
-4,AD,Always Defect,1128.0,2.256,0.0,1.0,500.0
-5,AC,Always Cooperate,1050.0,2.1,1.0,0.0,500.0
-6,RAND,Random,1019.0,2.038,0.496,0.504,500.0
