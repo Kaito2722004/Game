@@ -1,0 +1,5 @@
+# Core project dependencies.
+# The game engine, strategies and tournament run on the standard library alone;
+# pandas and matplotlib are used for the results tables and the charts.
+pandas>=2.0
+matplotlib>=3.7

@@ -1,0 +1,15 @@
+{
+  "strategies": [
+    "AC",
+    "AD",
+    "TFT",
+    "GT",
+    "TF2T",
+    "RAND"
+  ],
+  "rounds_per_match": 100,
+  "repeats": 1,
+  "seed": 42,
+  "include_self": false,
+  "matches_played": 15
+}

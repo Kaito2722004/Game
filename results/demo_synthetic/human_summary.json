@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "pairs": 10,
+    "rounds_per_pair": 10,
+    "decisions": 200,
+    "cooperation_rate": 0.445,
+    "defection_rate": 0.555,
+    "mutual_cooperation_rate": 0.2,
+    "mutual_defection_rate": 0.31,
+    "mean_payoff_per_decision": 2.135,
+    "max_possible_mean_payoff": 3.0
+  },
+  "vs_theory": {
+    "nash_prediction": "Mutual defection (D,D) in every round: cooperation rate 0.000",
+    "observed_cooperation_rate": 0.445,
+    "observed_mutual_defection_rate": 0.31,
+    "gap": 0.445,
+    "reading": "Cooperation above 0 means observed play departs from the one-shot Nash prediction; repeated interaction gives players a reason to build and protect a cooperative record."
+  }
+}
