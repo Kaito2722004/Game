@@ -8,6 +8,7 @@ from app.api.routes import (
     auth,
     experiments,
     game_theory,
+    history,
     matches,
     payoff_matrices,
     strategies,
@@ -24,3 +25,4 @@ api_router.include_router(matches.router)
 api_router.include_router(tournaments.router)
 api_router.include_router(experiments.router)
 api_router.include_router(surveys.router)
+api_router.include_router(history.router)
