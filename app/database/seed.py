@@ -81,13 +81,31 @@ def seed_strategies(db: Session) -> list[Strategy]:
     return rows
 
 
+DEFAULT_ADMIN_PASSWORD = "admin12345"
+
+
+class InsecureSeedError(RuntimeError):
+    """Raised when seeding would create a publicly guessable admin account."""
+
+
 def seed_admin(db: Session) -> User | None:
     """Create the first admin account if it does not already exist.
 
     The credentials come from FIRST_ADMIN_EMAIL / FIRST_ADMIN_PASSWORD. An
     existing account is never modified, so a changed password is not reset by
     re-running the seed.
+
+    In production the built-in default password is refused outright. It is
+    published in this repository, so seeding a reachable deployment with it
+    would hand anyone who reads the source a full administrator account.
     """
+    if settings.is_production and settings.FIRST_ADMIN_PASSWORD == DEFAULT_ADMIN_PASSWORD:
+        raise InsecureSeedError(
+            "FIRST_ADMIN_PASSWORD is still the built-in default, which is public "
+            "in the source. Set a real password in the environment before "
+            "seeding a production deployment."
+        )
+
     email = settings.FIRST_ADMIN_EMAIL.strip().lower()
     existing = db.execute(select(User).where(User.email == email)).scalar_one_or_none()
     if existing is not None:
@@ -127,7 +145,7 @@ def main() -> None:
     logger.info("  default payoff matrix : %s", summary["default_matrix"])
     logger.info("  strategies registered : %s", summary["strategies"])
     logger.info("  admin account         : %s", summary["admin_email"])
-    if settings.FIRST_ADMIN_PASSWORD == "admin12345":
+    if settings.FIRST_ADMIN_PASSWORD == DEFAULT_ADMIN_PASSWORD:
         logger.warning(
             "  the admin password is the built-in default; change "
             "FIRST_ADMIN_PASSWORD before deploying"

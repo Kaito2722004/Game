@@ -8,6 +8,9 @@ from typing import Annotated, Literal
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
+# Published in this repository, so it is only ever acceptable in development.
+DEFAULT_SECRET_KEY = "change-me-in-production-this-is-not-a-secret"
+
 
 class Settings(BaseSettings):
     """Every configurable value in the application.
@@ -37,7 +40,7 @@ class Settings(BaseSettings):
 
     # --- security ----------------------------------------------------------
     SECRET_KEY: str = Field(
-        default="change-me-in-production-this-is-not-a-secret",
+        default=DEFAULT_SECRET_KEY,
         description="Signing key for JWTs. Must be overridden outside development.",
     )
     ALGORITHM: str = "HS256"
@@ -83,6 +86,34 @@ class Settings(BaseSettings):
     @property
     def is_production(self) -> bool:
         return self.ENVIRONMENT == "production"
+
+    def assert_production_ready(self) -> None:
+        """Refuse to run a reachable deployment on published defaults.
+
+        The default signing key is in this repository. Anyone who read it could
+        mint a token for any account, including an administrator, so booting a
+        production deployment with it has to fail loudly rather than warn.
+        """
+        if not self.is_production:
+            return
+
+        problems: list[str] = []
+        if self.SECRET_KEY == DEFAULT_SECRET_KEY:
+            problems.append(
+                "SECRET_KEY is still the built-in default, which is public in the "
+                "source. Generate one with: "
+                'python -c "import secrets; print(secrets.token_urlsafe(48))"'
+            )
+        if not self.CORS_ORIGINS:
+            problems.append(
+                "CORS_ORIGINS is empty, so the deployed frontend will be blocked "
+                "by the browser. Set it to the frontend's URL."
+            )
+
+        if problems:
+            raise RuntimeError(
+                "Refusing to start in production:\n  - " + "\n  - ".join(problems)
+            )
 
 
 @lru_cache

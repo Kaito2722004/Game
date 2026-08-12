@@ -1,0 +1,61 @@
+# Render Blueprint for the FastAPI backend.
+#
+# Create the Neon database first, then point DATABASE_URL at it. Everything
+# else here is either generated or has a safe default.
+#
+# The database is deliberately NOT declared as a Render service: Neon's free
+# tier is more generous and does not expire, whereas a free Render Postgres is
+# deleted after 30 days, which would take a project's results with it.
+
+services:
+  - type: web
+    name: prisoners-dilemma-api
+    runtime: python
+    plan: free
+    region: singapore # nearest to Myanmar; change if you prefer
+    branch: main
+
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+
+    # Migrations and seeding run at boot rather than at build time, because a
+    # Render build has no access to the runtime environment variables that
+    # hold the database URL.
+    preDeployCommand: python -m alembic upgrade head && python -m app.database.seed
+
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+    healthCheckPath: /health
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+
+      # Paste the Neon connection string here in the Render dashboard.
+      # It must use the psycopg driver and require SSL, for example:
+      #   postgresql+psycopg://USER:PASSWORD@HOST/DB?sslmode=require
+      - key: DATABASE_URL
+        sync: false
+
+      # Generated once by Render and then kept. Never commit a real key.
+      - key: SECRET_KEY
+        generateValue: true
+
+      # The Vercel URL of the frontend, comma separated if there are several.
+      # Set this after the frontend is deployed, e.g.
+      #   https://your-project.vercel.app
+      - key: CORS_ORIGINS
+        sync: false
+
+      # Set a real password in the dashboard before the first deploy. The seed
+      # script creates the admin account with it.
+      - key: FIRST_ADMIN_EMAIL
+        sync: false
+      - key: FIRST_ADMIN_PASSWORD
+        sync: false
+
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "1440"

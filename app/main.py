@@ -43,6 +43,9 @@ assert that any particular strategy is always best.
 
 def create_app() -> FastAPI:
     """Build and configure the application."""
+    # Fails fast rather than serving a deployment anyone could sign into.
+    settings.assert_production_ready()
+
     app = FastAPI(
         title=settings.PROJECT_NAME,
         description=DESCRIPTION,
