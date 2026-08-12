@@ -7,16 +7,18 @@ Usage:
 
     python scripts/check_db_url.py "postgresql+psycopg://user:pass@host/db?sslmode=require"
 
-or, to keep the string out of your shell history:
+or run it with no argument and paste when prompted:
 
-    python scripts/check_db_url.py            # prompts, input hidden
+    python scripts/check_db_url.py
 
-The password is never printed back.
+The prompt echoes what you paste. A hidden prompt sounds safer, but several
+Windows terminals refuse a Ctrl+V into one and give no sign that nothing
+arrived, which is a worse failure than showing the string on your own screen.
+The password is masked in everything the script prints afterwards.
 """
 
 from __future__ import annotations
 
-import getpass
 import sys
 from urllib.parse import urlsplit
 
@@ -82,10 +84,30 @@ def main() -> int:
     if len(sys.argv) > 1:
         url = sys.argv[1]
     else:
-        url = getpass.getpass("Paste the connection string (hidden): ")
+        print("Paste the connection string and press Enter.")
+        print("(Right-click pastes in PowerShell if Ctrl+V does nothing.)")
+        try:
+            url = input("> ")
+        except (EOFError, KeyboardInterrupt):
+            print()
+            print("Cancelled.")
+            return 2
 
-    if not url.strip():
-        print("Nothing to check.")
+    url = url.strip().strip('"').strip("'")
+
+    if not url:
+        print()
+        print("Nothing was captured — the paste did not arrive.")
+        print("Try passing it as an argument instead:")
+        print('  python scripts/check_db_url.py "postgresql+psycopg://..."')
+        return 2
+
+    if "://" not in url or "@" not in url:
+        print()
+        print("That does not look like a connection string.")
+        print("Only part of it seems to have arrived:", len(url), "characters.")
+        print("A Neon URL is usually 100-150 characters and looks like:")
+        print("  postgresql+psycopg://user:password@ep-xxx.neon.tech/neondb?sslmode=require")
         return 2
 
     print()
