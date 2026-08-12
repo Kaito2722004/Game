@@ -61,10 +61,23 @@ const AboutPage = lazy(() =>
 const NotFoundPage = lazy(() =>
   import("@/pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })),
 );
+const LoginPage = lazy(() =>
+  import("@/pages/LoginPage").then((m) => ({ default: m.LoginPage })),
+);
 
 export function AppRoutes() {
   return (
     <Routes>
+      {/* Sign-in sits outside the app shell: no sidebar, full screen. */}
+      <Route
+        path="login"
+        element={
+          <Suspense fallback={<LoadingBlock label="Loading sign in" />}>
+            <LoginPage />
+          </Suspense>
+        }
+      />
+
       <Route element={<AppLayout />}>
         <Route
           element={

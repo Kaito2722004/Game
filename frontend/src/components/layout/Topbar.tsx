@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LogIn, LogOut, Menu, ShieldCheck, User as UserIcon } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
 import { useAuth } from "@/context/AuthContext";
-import { LoginDialog } from "@/features/auth/LoginDialog";
 
 interface TopbarProps {
   onOpenSidebar: () => void;
@@ -11,7 +10,12 @@ interface TopbarProps {
 
 export function Topbar({ onOpenSidebar }: TopbarProps) {
   const { user, isAuthenticated, logout } = useAuth();
-  const [loginOpen, setLoginOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Remember where the user was, so signing in returns them to it.
+  const goToLogin = () =>
+    navigate("/login", { state: { from: location.pathname + location.search } });
 
   return (
     <header className="sticky top-0 z-20 flex h-16 items-center justify-between gap-3 border-b border-lab-200 bg-white/90 px-4 backdrop-blur-sm sm:px-6">
@@ -67,15 +71,13 @@ export function Topbar({ onOpenSidebar }: TopbarProps) {
               variant="secondary"
               size="sm"
               icon={<LogIn className="h-4 w-4" />}
-              onClick={() => setLoginOpen(true)}
+              onClick={goToLogin}
             >
               Sign in
             </Button>
           </>
         )}
       </div>
-
-      <LoginDialog open={loginOpen} onClose={() => setLoginOpen(false)} />
     </header>
   );
 }

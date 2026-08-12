@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
 interface DialogProps {
@@ -48,7 +49,13 @@ export function Dialog({
 
   if (!open) return null;
 
-  return (
+  // Rendered into document.body on purpose. A `position: fixed` element is
+  // positioned against the nearest ancestor with a filter, transform or
+  // backdrop-filter rather than the viewport — the translucent top bar uses
+  // backdrop-blur, so a dialog opened from there would be trapped inside its
+  // 64px height and clipped. A portal sidesteps that entirely, and keeps the
+  // dialog above every stacking context on the page.
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4">
       <div
         className="absolute inset-0 animate-fade-in bg-lab-950/40"
@@ -90,6 +97,7 @@ export function Dialog({
           </footer>
         ) : null}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

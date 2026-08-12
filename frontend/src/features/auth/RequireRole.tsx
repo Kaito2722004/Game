@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Lock } from "lucide-react";
 import { EmptyState } from "@/components/common/EmptyState";
 import { useAuth } from "@/context/AuthContext";
@@ -20,6 +21,7 @@ interface RequireRoleProps {
  */
 export function RequireRole({ roles, children, fallback }: RequireRoleProps) {
   const { hasRole, isAuthenticated } = useAuth();
+  const location = useLocation();
 
   if (hasRole(...roles)) return <>{children}</>;
   if (fallback !== undefined) return <>{fallback}</>;
@@ -32,6 +34,17 @@ export function RequireRole({ roles, children, fallback }: RequireRoleProps) {
         isAuthenticated
           ? `This action needs one of these roles: ${roles.join(", ")}.`
           : `Sign in with a ${roles.join(" or ")} account to use this. Everything on this page can still be read while signed out.`
+      }
+      action={
+        isAuthenticated ? undefined : (
+          <Link
+            to="/login"
+            state={{ from: location.pathname + location.search }}
+            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
+          >
+            Sign in
+          </Link>
+        )
       }
     />
   );
