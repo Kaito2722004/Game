@@ -1,5 +1,7 @@
 # Deploying online
 
+> မြန်မာဘာသာ: [DEPLOYMENT.my.md](DEPLOYMENT.my.md)
+
 Three pieces, three hosts, all on free tiers:
 
 ```
