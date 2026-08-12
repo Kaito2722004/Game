@@ -2,6 +2,24 @@ import { Suspense, lazy } from "react";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { LoadingBlock } from "@/components/common/Spinner";
+import { useAuth } from "@/context/AuthContext";
+
+/**
+ * Where the application opens.
+ *
+ * Signed out, it opens on the sign-in page. Signed in, it goes straight to
+ * the dashboard, so a returning user is not asked to sign in again.
+ *
+ * The wait on `initialising` matters: while the stored token is being checked
+ * the user is not yet known to be authenticated, and redirecting early would
+ * bounce a signed-in user to the login page on every refresh.
+ */
+function RootRedirect() {
+  const { isAuthenticated, initialising } = useAuth();
+
+  if (initialising) return <LoadingBlock label="Starting" />;
+  return <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />;
+}
 
 /**
  * Every route in the application.
@@ -78,6 +96,9 @@ export function AppRoutes() {
         }
       />
 
+      {/* The landing decision, outside the shell so no sidebar flashes first. */}
+      <Route index element={<RootRedirect />} />
+
       <Route element={<AppLayout />}>
         <Route
           element={
@@ -86,7 +107,6 @@ export function AppRoutes() {
             </Suspense>
           }
         >
-          <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
 
           <Route path="game-theory" element={<GameTheoryPage />} />
