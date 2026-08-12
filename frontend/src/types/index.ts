@@ -500,3 +500,39 @@ export interface TrustSurveyStatistics {
   correlation_trust_after_vs_actual: number | null;
   interpretation_note: string;
 }
+
+/* ----------------------------------------------------------------- history -- */
+
+export type HistoryKind = "TOURNAMENT" | "EXPERIMENT" | "SIMULATED_MATCH";
+
+/** One thing that was played, in a shape common to all three kinds. */
+export interface HistoryEntry {
+  id: string;
+  kind: HistoryKind;
+  title: string;
+  subtitle: string | null;
+  status: string;
+  occurred_at: string;
+  matches: number;
+  rounds: number;
+  cooperation_rate: number | null;
+  headline: string | null;
+  parent_id: string | null;
+}
+
+export interface HistoryTotals {
+  tournaments: number;
+  tournament_matches: number;
+  tournament_rounds: number;
+  experiments: number;
+  human_pairs: number;
+  human_rounds: number;
+  simulated_matches: number;
+  survey_responses: number;
+  total_rounds_played: number;
+}
+
+export interface HistoryResponse {
+  totals: HistoryTotals;
+  entries: HistoryEntry[];
+}

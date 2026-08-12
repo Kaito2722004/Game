@@ -67,6 +67,9 @@ const ExperimentPlayPage = lazy(() =>
 const ExperimentResultsPage = lazy(() =>
   import("@/pages/ExperimentResultsPage").then((m) => ({ default: m.ExperimentResultsPage })),
 );
+const HistoryPage = lazy(() =>
+  import("@/pages/HistoryPage").then((m) => ({ default: m.HistoryPage })),
+);
 const StatisticsPage = lazy(() =>
   import("@/pages/StatisticsPage").then((m) => ({ default: m.StatisticsPage })),
 );
@@ -124,6 +127,7 @@ export function AppRoutes() {
           <Route path="experiments/:id/play" element={<ExperimentPlayPage />} />
           <Route path="experiments/:id/results" element={<ExperimentResultsPage />} />
 
+          <Route path="history" element={<HistoryPage />} />
           <Route path="statistics" element={<StatisticsPage />} />
           <Route path="trust-survey" element={<TrustSurveyPage />} />
           <Route path="about" element={<AboutPage />} />

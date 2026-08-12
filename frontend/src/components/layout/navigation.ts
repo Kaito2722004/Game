@@ -1,5 +1,6 @@
 import {
   BarChart3,
+  History,
   BookMarked,
   BrainCircuit,
   FlaskConical,
@@ -86,6 +87,12 @@ export const NAV_SECTIONS: NavSection[] = [
   {
     heading: "Analysis",
     items: [
+      {
+        to: "/history",
+        label: "Game History",
+        icon: History,
+        description: "Everything played so far, in one list",
+      },
       {
         to: "/statistics",
         label: "Statistics",

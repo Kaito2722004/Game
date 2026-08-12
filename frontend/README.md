@@ -171,6 +171,7 @@ src/
 | `/experiments/:id` | ExperimentDetailPage | Participants, pairing, session control |
 | `/experiments/:id/play` | ExperimentPlayPage | Hidden simultaneous choices, reveal, next round |
 | `/experiments/:id/results` | ExperimentResultsPage | Rates, Nash comparison, four charts |
+| `/history` | HistoryPage | Everything played, in one filterable list with CSV export |
 | `/statistics` | StatisticsPage | Descriptive statistics for tournaments and experiments |
 | `/trust-survey` | TrustSurveyPage | Record 1–5 answers; expected vs actual cooperation |
 | `/about` | AboutPage | Sources, chapters used, project structure |
@@ -203,6 +204,8 @@ All paths are relative to `VITE_API_BASE_URL`.
 `POST /experiments/{id}/start`, `POST /experiments/{id}/rounds`,
 `GET /experiments/{id}/results`, `GET /experiments/{id}/statistics`,
 `GET /experiments/{id}/export/rounds.csv`
+
+**History** — `GET /history` (optional `kind`, `limit`)
 
 **Surveys** — `POST /surveys/trust`, `GET /experiments/{id}/surveys/trust`,
 `GET /experiments/{id}/surveys/trust/statistics`
