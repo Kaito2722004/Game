@@ -61,11 +61,11 @@ export function ExperimentsPage() {
         <div className="min-w-0">
           <Link
             to={`/experiments/${row.id}`}
-            className="font-medium text-indigo-700 hover:text-indigo-900"
+            className="font-medium text-violet-300 hover:text-violet-200"
           >
             {row.name}
           </Link>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-lab-600">
             {row.rounds} rounds · {row.anonymous_mode ? "anonymous" : "named"}
           </p>
         </div>
@@ -93,7 +93,7 @@ export function ExperimentsPage() {
       key: "created",
       header: "Created",
       hideOnMobile: true,
-      render: (row) => <span className="text-xs text-slate-500">{formatDate(row.created_at)}</span>,
+      render: (row) => <span className="text-xs text-lab-600">{formatDate(row.created_at)}</span>,
     },
   ];
 

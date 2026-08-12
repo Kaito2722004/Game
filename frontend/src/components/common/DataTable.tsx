@@ -42,7 +42,7 @@ export function DataTable<T>({
   emptyMessage = "No rows to display.",
 }: DataTableProps<T>) {
   if (rows.length === 0) {
-    return <p className="px-5 py-8 text-center text-sm text-slate-500">{emptyMessage}</p>;
+    return <p className="px-5 py-8 text-center text-sm text-lab-600">{emptyMessage}</p>;
   }
 
   return (
@@ -50,13 +50,13 @@ export function DataTable<T>({
       <table className="w-full min-w-[36rem] border-collapse text-sm">
         {caption ? <caption className="sr-only">{caption}</caption> : null}
         <thead>
-          <tr className="border-b border-lab-200 bg-lab-50/60">
+          <tr className="border-b border-lab-250 bg-lab-50/70">
             {columns.map((column) => (
               <th
                 key={column.key}
                 scope="col"
                 className={cn(
-                  "px-3 py-2.5 text-xs font-semibold tracking-wide text-slate-600 uppercase",
+                  "px-3 py-2.5 text-xs font-semibold tracking-wide text-lab-700 uppercase",
                   ALIGN[column.align ?? "left"],
                   column.hideOnMobile && "hidden md:table-cell",
                   column.className,
@@ -87,16 +87,16 @@ export function DataTable<T>({
                 tabIndex={clickable ? 0 : undefined}
                 role={clickable ? "button" : undefined}
                 className={cn(
-                  "border-b border-lab-100 transition-colors last:border-0",
-                  clickable && "cursor-pointer hover:bg-indigo-50/50",
-                  highlightRow?.(row) && "bg-indigo-50/40",
+                  "border-b border-lab-250 transition-colors last:border-0",
+                  clickable && "cursor-pointer hover:bg-violet-500/10",
+                  highlightRow?.(row) && "bg-violet-500/10",
                 )}
               >
                 {columns.map((column) => (
                   <td
                     key={column.key}
                     className={cn(
-                      "px-3 py-2.5 text-slate-700",
+                      "px-3 py-2.5 text-lab-800",
                       ALIGN[column.align ?? "left"],
                       column.hideOnMobile && "hidden md:table-cell",
                     )}

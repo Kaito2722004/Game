@@ -70,10 +70,10 @@ export function AboutPage() {
         <Card>
           <CardHeader title="Primary reference" />
           <CardBody className="space-y-4">
-            <div className="rounded-lg border border-lab-200 bg-lab-50 p-4">
+            <div className="rounded-lg border border-lab-250 bg-lab-50 p-4">
               <p className="text-sm font-semibold text-lab-950">Philip D. Straffin</p>
-              <p className="text-sm italic text-slate-700">Game Theory and Strategy</p>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="text-sm italic text-lab-800">Game Theory and Strategy</p>
+              <p className="mt-2 text-xs text-lab-600">
                 Consult the book itself for exact wording, page numbers and a formal
                 citation in the style your department requires. No page numbers are
                 reproduced here, because inventing them would be worse than omitting them.
@@ -82,11 +82,11 @@ export function AboutPage() {
 
             <div className="space-y-3">
               {CHAPTERS.map((chapter) => (
-                <div key={chapter.number} className="rounded-lg border border-lab-200 p-3">
+                <div key={chapter.number} className="rounded-lg border border-lab-250 p-3">
                   <p className="text-sm font-semibold text-lab-900">
                     {chapter.number} — {chapter.title}
                   </p>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                  <p className="mt-1 text-xs leading-relaxed text-lab-700">
                     {chapter.usedFor}
                   </p>
                 </div>
@@ -106,7 +106,7 @@ export function AboutPage() {
                 {PROJECT_PARTS.map((part) => (
                   <div key={part.title}>
                     <dt className="text-sm font-semibold text-lab-900">{part.title}</dt>
-                    <dd className="mt-0.5 text-xs leading-relaxed text-slate-600">
+                    <dd className="mt-0.5 text-xs leading-relaxed text-lab-700">
                       {part.description}
                     </dd>
                   </div>
@@ -117,7 +117,7 @@ export function AboutPage() {
 
           <Card>
             <CardHeader title="How it is put together" />
-            <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
               <p>
                 This interface is a React and TypeScript application. It holds no game
                 theory of its own: every equilibrium, dominance result, payoff and ranking
@@ -130,14 +130,14 @@ export function AboutPage() {
                 them.
               </p>
               <div className="rounded-lg bg-lab-50 p-3">
-                <p className="text-xs text-slate-500">Currently talking to</p>
+                <p className="text-xs text-lab-600">Currently talking to</p>
                 <p className="font-mono text-xs break-all text-lab-800">{API_BASE_URL}</p>
               </div>
               <a
                 href="http://localhost:8000/docs"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-800"
+                className="inline-flex items-center gap-1 text-sm font-medium text-violet-400 hover:text-violet-300"
               >
                 Open the backend API documentation
                 <ExternalLink className="h-3.5 w-3.5" aria-hidden />
@@ -147,7 +147,7 @@ export function AboutPage() {
 
           <Card>
             <CardHeader title="Academic honesty" />
-            <CardBody className="space-y-2 text-xs leading-relaxed text-slate-600">
+            <CardBody className="space-y-2 text-xs leading-relaxed text-lab-700">
               <p>
                 Results shown in this application come from actual simulations and
                 recorded classroom data. No ranking, equilibrium or statistic is

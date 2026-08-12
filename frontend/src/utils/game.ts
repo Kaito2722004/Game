@@ -31,31 +31,37 @@ export function actionShort(action: Action): "C" | "D" {
   return action === "COOPERATE" ? "C" : "D";
 }
 
-/** Chart colours. Text labels always accompany these in the UI. */
+/**
+ * Chart colours for the dark theme.
+ *
+ * Violet leads, with pink and cyan as supporting series. Cooperate green and
+ * defect red keep their meaning and are never used for anything else. All of
+ * these clear 3:1 contrast against the card background.
+ */
 export const CHART_COLORS = {
-  cooperate: "#15803d",
-  defect: "#b91c1c",
-  neutral: "#2563eb",
-  muted: "#64748b",
-  accent: "#7c3aed",
-  playerA: "#2563eb",
-  playerB: "#ea580c",
+  cooperate: "#34d399",
+  defect: "#fb7185",
+  neutral: "#a855f7",
+  muted: "#756a86",
+  accent: "#8b5cf6",
+  playerA: "#a78bfa",
+  playerB: "#22d3ee",
 } as const;
 
 export const OUTCOME_COLORS: Record<Outcome, string> = {
-  CC: "#15803d",
-  CD: "#f59e0b",
-  DC: "#8b5cf6",
-  DD: "#b91c1c",
+  CC: "#34d399",
+  CD: "#fbbf24",
+  DC: "#22d3ee",
+  DD: "#fb7185",
 };
 
 export const SERIES_PALETTE = [
-  "#2563eb",
-  "#15803d",
-  "#b91c1c",
-  "#ea580c",
-  "#7c3aed",
-  "#0891b2",
-  "#ca8a04",
-  "#db2777",
+  "#a855f7",
+  "#22d3ee",
+  "#ec4899",
+  "#34d399",
+  "#818cf8",
+  "#fbbf24",
+  "#fb7185",
+  "#c4b5fd",
 ];

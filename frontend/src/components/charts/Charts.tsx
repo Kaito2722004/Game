@@ -15,8 +15,17 @@ import {
 } from "recharts";
 import { CHART_COLORS } from "@/utils/game";
 
-const AXIS_STYLE = { fontSize: 11, fill: "#64748b" } as const;
-const GRID_STROKE = "#e2e8f0";
+const AXIS_STYLE = { fontSize: 11, fill: "#8b7fa0" } as const;
+const GRID_STROKE = "#2a1f42";
+
+/**
+ * Recharts animates with requestAnimationFrame, which the CSS reduced-motion
+ * rule cannot reach. Honour the preference here too, so a user who asks for
+ * less motion gets charts that simply appear.
+ */
+const ANIMATE =
+  typeof window !== "undefined" &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /** Recharts hands the formatter a loose ValueType; coerce it once, here. */
 function toNumber(value: unknown): number {
@@ -25,11 +34,16 @@ function toNumber(value: unknown): number {
 }
 
 const TOOLTIP_STYLE = {
-  borderRadius: 8,
-  border: "1px solid #e2e8f0",
+  borderRadius: 12,
+  border: "1px solid #3a2c55",
+  background: "#171025",
+  color: "#efeaf7",
   fontSize: 12,
-  boxShadow: "0 4px 12px rgba(15, 23, 42, 0.08)",
+  boxShadow: "0 12px 32px -12px rgba(0, 0, 0, 0.8)",
 } as const;
+
+/** Recharts draws the hover band itself; keep it a faint violet wash. */
+const CURSOR_FILL = { fill: "rgba(139, 92, 246, 0.10)" } as const;
 
 export interface CategoryDatum {
   label: string;
@@ -78,12 +92,13 @@ export function CategoryBarChart({
         />
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
+          cursor={CURSOR_FILL}
           formatter={(value: unknown) => {
             const numeric = toNumber(value);
             return [formatter ? formatter(numeric) : numeric, yLabel];
           }}
         />
-        <Bar dataKey="value" name={yLabel} radius={[4, 4, 0, 0]}>
+        <Bar isAnimationActive={ANIMATE} dataKey="value" name={yLabel} radius={[4, 4, 0, 0]}>
           {data.map((entry, index) => (
             <Cell key={index} fill={entry.color ?? color} />
           ))}
@@ -136,23 +151,25 @@ export function MultiLineChart({
         />
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
+          cursor={{ stroke: "#8b5cf6", strokeWidth: 1, strokeDasharray: "4 4" }}
           formatter={(value: unknown, name: unknown) => {
             const numeric = toNumber(value);
             return [formatter ? formatter(numeric) : numeric, String(name)];
           }}
           labelFormatter={(label) => `${xLabel} ${label}`}
         />
-        {series.length > 1 ? <Legend wrapperStyle={{ fontSize: 12 }} /> : null}
+        {series.length > 1 ? <Legend wrapperStyle={{ fontSize: 12, color: "#b8aec9" }} /> : null}
         {series.map((entry) => (
           <Line
             key={entry.key}
+            isAnimationActive={ANIMATE}
             type="monotone"
             dataKey={entry.key}
             name={entry.name}
             stroke={entry.color}
             strokeWidth={2}
             dot={false}
-            activeDot={{ r: 4 }}
+            activeDot={{ r: 5, strokeWidth: 2, stroke: "#171025" }}
           />
         ))}
       </LineChart>
@@ -203,15 +220,17 @@ export function GroupedBarChart({
         />
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
+          cursor={CURSOR_FILL}
           formatter={(value: unknown, name: unknown) => {
             const numeric = toNumber(value);
             return [formatter ? formatter(numeric) : numeric, String(name)];
           }}
         />
-        <Legend wrapperStyle={{ fontSize: 12 }} />
+        <Legend wrapperStyle={{ fontSize: 12, color: "#b8aec9" }} />
         {series.map((entry) => (
           <Bar
             key={entry.key}
+            isAnimationActive={ANIMATE}
             dataKey={entry.key}
             name={entry.name}
             fill={entry.color}
@@ -242,7 +261,7 @@ export function OutcomePieChart({
 
   if (total === 0) {
     return (
-      <div className="flex h-full items-center justify-center text-sm text-slate-500">
+      <div className="flex h-full items-center justify-center text-sm text-lab-600">
         No outcomes recorded yet.
       </div>
     );
@@ -252,12 +271,15 @@ export function OutcomePieChart({
     <ResponsiveContainer width="100%" height="100%">
       <PieChart>
         <Pie
+          isAnimationActive={ANIMATE}
           data={data}
           dataKey="value"
           nameKey="label"
           innerRadius="45%"
           outerRadius="75%"
-          paddingAngle={2}
+          paddingAngle={3}
+          stroke="#171025"
+          strokeWidth={2}
         >
           {data.map((slice, index) => (
             <Cell key={index} fill={slice.color} />
@@ -265,12 +287,13 @@ export function OutcomePieChart({
         </Pie>
         <Tooltip
           contentStyle={TOOLTIP_STYLE}
+          cursor={CURSOR_FILL}
           formatter={(value: unknown, name: unknown) => {
             const numeric = toNumber(value);
             return [formatter ? formatter(numeric) : numeric, String(name)];
           }}
         />
-        <Legend wrapperStyle={{ fontSize: 12 }} />
+        <Legend wrapperStyle={{ fontSize: 12, color: "#b8aec9" }} />
       </PieChart>
     </ResponsiveContainer>
   );

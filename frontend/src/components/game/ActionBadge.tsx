@@ -24,8 +24,8 @@ export function ActionBadge({ action, size = "sm", showLabel = true }: ActionBad
       className={cn(
         "inline-flex items-center gap-1.5 rounded-md font-medium ring-1 ring-inset",
         cooperates
-          ? "bg-cooperate-soft text-green-900 ring-green-300"
-          : "bg-defect-soft text-red-900 ring-red-300",
+          ? "bg-cooperate-soft text-emerald-200 ring-emerald-400/40"
+          : "bg-defect-soft text-rose-200 ring-red-300",
         size === "sm" ? "px-1.5 py-0.5 text-xs" : "px-2.5 py-1 text-sm",
       )}
     >

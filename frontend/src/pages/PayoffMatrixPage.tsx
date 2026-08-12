@@ -193,21 +193,21 @@ export function PayoffMatrixPage() {
       >
         {selectedCell ? (
           <div className="space-y-3">
-            <p className="text-sm leading-relaxed text-slate-700">
+            <p className="text-sm leading-relaxed text-lab-800">
               {OUTCOME_DESCRIPTIONS[selectedCell]}
             </p>
 
             <div className="rounded-lg bg-lab-50 p-3">
               <p className="font-mono text-lg text-lab-900">
-                <span className="text-blue-700">
+                <span className="text-sky-300">
                   {matrix[selectedCell.toLowerCase() as keyof PayoffMatrixInput].player_a_payoff}
                 </span>
-                <span className="text-slate-400">, </span>
-                <span className="text-orange-700">
+                <span className="text-lab-500">, </span>
+                <span className="text-orange-300">
                   {matrix[selectedCell.toLowerCase() as keyof PayoffMatrixInput].player_b_payoff}
                 </span>
               </p>
-              <p className="text-xs text-slate-500">Player A payoff, Player B payoff</p>
+              <p className="text-xs text-lab-600">Player A payoff, Player B payoff</p>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -220,14 +220,14 @@ export function PayoffMatrixPage() {
             </div>
 
             {selectedAnalysis ? (
-              <p className="text-xs leading-relaxed text-slate-600">
+              <p className="text-xs leading-relaxed text-lab-700">
                 {selectedAnalysis.explanation}
               </p>
             ) : null}
 
             {selectedCell === "DD" &&
             analysis?.mutual_cooperation_pareto_superior_to_mutual_defection ? (
-              <p className="rounded-lg bg-indigo-50 p-3 text-xs leading-relaxed text-indigo-950">
+              <p className="rounded-lg bg-violet-500/10 p-3 text-xs leading-relaxed text-violet-100">
                 For this matrix the backend reports that mutual cooperation is
                 Pareto-superior to mutual defection: both players would do better at
                 (C,C) than here.

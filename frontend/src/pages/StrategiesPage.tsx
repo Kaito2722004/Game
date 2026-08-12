@@ -72,7 +72,7 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
   const example = EXAMPLES[strategy.id];
 
   return (
-    <Card className="flex flex-col transition-shadow hover:shadow-md">
+    <Card className="card-interactive flex flex-col">
       <CardHeader
         title={strategy.name}
         icon={categoryIcon(strategy.category)}
@@ -88,10 +88,10 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
         }
       />
       <CardBody className="flex flex-1 flex-col gap-4">
-        <p className="text-sm leading-relaxed text-slate-700">{strategy.description}</p>
+        <p className="text-sm leading-relaxed text-lab-800">{strategy.description}</p>
 
         <div>
-          <h4 className="mb-1.5 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+          <h4 className="mb-1.5 text-xs font-semibold tracking-wide text-lab-600 uppercase">
             Rule
           </h4>
           <ol className="list-inside list-decimal space-y-1 rounded-lg bg-lab-50 p-3 text-sm text-lab-800">
@@ -103,17 +103,17 @@ function StrategyCard({ strategy }: { strategy: Strategy }) {
 
         {example ? (
           <div className="mt-auto">
-            <h4 className="mb-1.5 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+            <h4 className="mb-1.5 text-xs font-semibold tracking-wide text-lab-600 uppercase">
               Example
             </h4>
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-lab-700">
               <span className="font-medium text-lab-800">{example.situation}: </span>
               {example.behaviour}
             </p>
           </div>
         ) : null}
 
-        <p className="font-mono text-[11px] text-slate-400">{strategy.id}</p>
+        <p className="font-mono text-[11px] text-lab-500">{strategy.id}</p>
       </CardBody>
     </Card>
   );
@@ -190,16 +190,16 @@ export function StrategiesPage() {
                       "Behaves predictably enough that an opponent can work out that cooperating pays.",
                   },
                 ].map((entry) => (
-                  <div key={entry.term} className="rounded-lg border border-lab-200 p-3">
+                  <div key={entry.term} className="rounded-lg border border-lab-250 p-3">
                     <dt className="text-sm font-semibold text-lab-900">{entry.term}</dt>
-                    <dd className="mt-1 text-xs leading-relaxed text-slate-600">
+                    <dd className="mt-1 text-xs leading-relaxed text-lab-700">
                       {entry.definition}
                     </dd>
                   </div>
                 ))}
               </dl>
 
-              <p className="mt-4 rounded-lg bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
+              <p className="mt-4 rounded-lg bg-amber-400/10 p-3 text-xs leading-relaxed text-amber-200">
                 These properties describe tendencies, not a guarantee. No strategy here is
                 universally optimal — how each one places depends on the payoff matrix and
                 on which opponents it meets. The tournament decides the ranking, not this

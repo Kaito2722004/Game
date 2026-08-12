@@ -152,15 +152,15 @@ export function TrustSurveyPage() {
                       onClick={() => setScore(value)}
                       className={
                         score === value
-                          ? "flex-1 rounded-lg border-2 border-indigo-500 bg-indigo-50 py-3 font-semibold text-indigo-800 transition-colors"
-                          : "flex-1 rounded-lg border-2 border-lab-200 py-3 font-medium text-lab-700 transition-colors hover:border-lab-300"
+                          ? "flex-1 rounded-lg border-2 border-violet-500 bg-violet-500/10 py-3 font-semibold text-violet-300 transition-colors"
+                          : "flex-1 rounded-lg border-2 border-lab-250 py-3 font-medium text-lab-700 transition-colors hover:border-lab-300"
                       }
                     >
                       {value}
                     </button>
                   ))}
                 </div>
-                <div className="mt-1 flex justify-between text-[11px] text-slate-500">
+                <div className="mt-1 flex justify-between text-[11px] text-lab-600">
                   <span>1 — {question.low}</span>
                   <span>5 — {question.high}</span>
                 </div>
@@ -176,7 +176,7 @@ export function TrustSurveyPage() {
                 Submit response
               </Button>
 
-              <p className="rounded-lg bg-lab-50 p-3 text-xs leading-relaxed text-slate-600">
+              <p className="rounded-lg bg-lab-50 p-3 text-xs leading-relaxed text-lab-700">
                 This classroom survey is exploratory and does not establish psychological
                 causation.
               </p>
@@ -220,16 +220,16 @@ export function TrustSurveyPage() {
                   />
                   <CardBody className="space-y-3">
                     <div className="grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-lg border border-lab-200 p-3">
-                        <p className="text-xs text-slate-500">
+                      <div className="rounded-lg border border-lab-250 p-3">
+                        <p className="text-xs text-lab-600">
                           Expected cooperation vs actual cooperation
                         </p>
                         <p className="mt-1 font-mono text-2xl font-semibold text-lab-900">
                           {formatCorrelation(statistics.data.correlation_expected_vs_actual)}
                         </p>
                       </div>
-                      <div className="rounded-lg border border-lab-200 p-3">
-                        <p className="text-xs text-slate-500">
+                      <div className="rounded-lg border border-lab-250 p-3">
+                        <p className="text-xs text-lab-600">
                           Trust after play vs actual cooperation
                         </p>
                         <p className="mt-1 font-mono text-2xl font-semibold text-lab-900">
@@ -238,7 +238,7 @@ export function TrustSurveyPage() {
                       </div>
                     </div>
 
-                    <p className="rounded-lg bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
+                    <p className="rounded-lg bg-amber-400/10 p-3 text-xs leading-relaxed text-amber-200">
                       {statistics.data.interpretation_note}
                     </p>
                   </CardBody>
@@ -258,7 +258,7 @@ export function TrustSurveyPage() {
 
             <Card>
               <CardHeader title="About this survey" />
-              <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+              <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
                 <p>
                   The textbook&apos;s chapter on social psychology connects the
                   Prisoner&apos;s Dilemma to questions of trust and suspicion: whether how
@@ -270,7 +270,7 @@ export function TrustSurveyPage() {
                   before play and one after. It deliberately does not reproduce the
                   historical F-scale questionnaire discussed in that literature.
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-lab-600">
                   With a classroom-sized sample, any relationship found here is a
                   description of these particular participants and nothing more.
                 </p>

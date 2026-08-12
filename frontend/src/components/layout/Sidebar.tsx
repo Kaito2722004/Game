@@ -14,7 +14,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
     <>
       {open ? (
         <div
-          className="fixed inset-0 z-30 animate-fade-in bg-lab-950/40 lg:hidden"
+          className="fixed inset-0 z-30 animate-fade-in bg-black/70 lg:hidden"
           onClick={onClose}
           aria-hidden
         />
@@ -24,21 +24,23 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         id="app-sidebar"
         aria-label="Main navigation"
         className={cn(
-          "fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-lab-200 bg-white",
+          "fixed inset-y-0 left-0 z-40 flex w-72 flex-col",
+          "border-r border-lab-250 bg-lab-75/95 backdrop-blur-xl",
           "transition-transform duration-200 lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <div className="flex items-center justify-between gap-2 border-b border-lab-200 px-5 py-4">
-          <NavLink to="/dashboard" className="flex items-center gap-2.5" onClick={onClose}>
-            <span className="rounded-lg bg-indigo-600 p-1.5 text-white" aria-hidden>
+        <div className="flex items-center justify-between gap-2 border-b border-lab-250 px-5 py-4">
+          <NavLink to="/dashboard" className="group flex items-center gap-2.5" onClick={onClose}>
+            <span
+              className="rounded-xl bg-gradient-to-br from-violet-600 to-purple-500 p-2 text-white shadow-[0_4px_16px_-4px_rgb(139_92_246/0.6)] transition-transform group-hover:scale-105"
+              aria-hidden
+            >
               <Dices className="h-5 w-5" />
             </span>
             <span>
-              <span className="block text-sm font-semibold text-lab-950">
-                Game Theory Lab
-              </span>
-              <span className="block text-[11px] text-slate-500">Prisoner&apos;s Dilemma</span>
+              <span className="block text-sm font-semibold text-white">Game Theory Lab</span>
+              <span className="block text-[11px] text-lab-500">Prisoner&apos;s Dilemma</span>
             </span>
           </NavLink>
 
@@ -46,7 +48,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
             type="button"
             onClick={onClose}
             aria-label="Close navigation"
-            className="rounded-lg p-1 text-lab-400 hover:bg-lab-100 hover:text-lab-700 lg:hidden"
+            className="rounded-lg p-1 text-lab-500 transition-colors hover:bg-lab-200 hover:text-white lg:hidden"
           >
             <X className="h-5 w-5" aria-hidden />
           </button>
@@ -55,7 +57,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         <nav className="flex-1 overflow-y-auto px-3 py-4">
           {NAV_SECTIONS.map((section) => (
             <div key={section.heading} className="mb-5">
-              <h2 className="px-3 pb-1.5 text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
+              <h2 className="px-3 pb-1.5 text-[10px] font-semibold tracking-[0.12em] text-lab-500 uppercase">
                 {section.heading}
               </h2>
               <ul className="space-y-0.5">
@@ -67,19 +69,31 @@ export function Sidebar({ open, onClose }: SidebarProps) {
                       title={item.description}
                       className={({ isActive }) =>
                         cn(
-                          "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                          "relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium",
+                          "transition-all duration-200",
                           isActive
-                            ? "bg-indigo-50 text-indigo-700"
-                            : "text-lab-700 hover:bg-lab-100 hover:text-lab-900",
+                            ? cn(
+                                "bg-gradient-to-r from-violet-600/90 to-purple-500/70 text-white",
+                                "shadow-[0_4px_18px_-6px_rgb(139_92_246/0.7)]",
+                              )
+                            : "text-lab-600 hover:bg-lab-200/70 hover:text-lab-900",
                         )
                       }
                     >
                       {({ isActive }) => (
                         <>
+                          {/* Left rail marker, so the active item is legible
+                              without relying on the gradient alone. */}
+                          {isActive ? (
+                            <span
+                              className="absolute top-1/2 -left-3 h-6 w-1 -translate-y-1/2 rounded-r-full bg-violet-400"
+                              aria-hidden
+                            />
+                          ) : null}
                           <item.icon
                             className={cn(
-                              "h-4 w-4 shrink-0",
-                              isActive ? "text-indigo-600" : "text-lab-400",
+                              "h-4 w-4 shrink-0 transition-colors",
+                              isActive ? "text-white" : "text-lab-500 group-hover:text-violet-300",
                             )}
                             aria-hidden
                           />
@@ -94,8 +108,8 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           ))}
         </nav>
 
-        <div className="border-t border-lab-200 px-5 py-3">
-          <p className="text-[11px] leading-relaxed text-slate-500">
+        <div className="border-t border-lab-250 px-5 py-3">
+          <p className="text-[11px] leading-relaxed text-lab-500">
             All game-theoretic results are computed by the FastAPI backend.
           </p>
         </div>

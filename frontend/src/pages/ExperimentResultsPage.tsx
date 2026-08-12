@@ -172,33 +172,33 @@ export function ExperimentResultsPage() {
           />
           <CardBody>
             <div className="grid gap-3 sm:grid-cols-3">
-              <div className="rounded-lg border border-lab-200 p-3">
-                <p className="text-xs tracking-wide text-slate-500 uppercase">Predicted</p>
+              <div className="rounded-lg border border-lab-250 p-3">
+                <p className="text-xs tracking-wide text-lab-600 uppercase">Predicted</p>
                 <p className="mt-1 text-xl font-semibold text-lab-900">
                   {formatPercent(stats.nash_prediction_cooperation_rate)}
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-lab-600">
                   cooperation, if every player plays the one-shot equilibrium
                 </p>
               </div>
-              <div className="rounded-lg border border-lab-200 p-3">
-                <p className="text-xs tracking-wide text-slate-500 uppercase">Observed</p>
-                <p className="mt-1 text-xl font-semibold text-green-800">
+              <div className="rounded-lg border border-lab-250 p-3">
+                <p className="text-xs tracking-wide text-lab-600 uppercase">Observed</p>
+                <p className="mt-1 text-xl font-semibold text-emerald-300">
                   {formatPercent(stats.cooperation_rate)}
                 </p>
-                <p className="text-xs text-slate-500">actual cooperation in this session</p>
+                <p className="text-xs text-lab-600">actual cooperation in this session</p>
               </div>
-              <div className="rounded-lg border border-lab-200 p-3">
-                <p className="text-xs tracking-wide text-slate-500 uppercase">Difference</p>
-                <p className="mt-1 text-xl font-semibold text-indigo-800">
+              <div className="rounded-lg border border-lab-250 p-3">
+                <p className="text-xs tracking-wide text-lab-600 uppercase">Difference</p>
+                <p className="mt-1 text-xl font-semibold text-violet-300">
                   {formatPercent(
                     stats.cooperation_rate - stats.nash_prediction_cooperation_rate,
                   )}
                 </p>
-                <p className="text-xs text-slate-500">observed minus predicted</p>
+                <p className="text-xs text-lab-600">observed minus predicted</p>
               </div>
             </div>
-            <p className="mt-3 rounded-lg bg-lab-50 p-3 text-xs leading-relaxed text-slate-600">
+            <p className="mt-3 rounded-lg bg-lab-50 p-3 text-xs leading-relaxed text-lab-700">
               Cooperation above the prediction means play departed from the one-shot
               equilibrium. Repeated interaction gives players a reason to build and
               protect a cooperative record. This is a description of one small sample, not
@@ -209,7 +209,7 @@ export function ExperimentResultsPage() {
       ) : (
         <Card className="mt-4">
           <CardBody>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-lab-700">
               This experiment&apos;s payoff matrix does not have mutual defection as its
               unique equilibrium, so the standard &quot;0% cooperation&quot; prediction
               does not apply here.
@@ -274,9 +274,9 @@ export function ExperimentResultsPage() {
                 return (
                   <div
                     key={outcome}
-                    className="flex items-center justify-between gap-3 rounded-lg border border-lab-200 px-3 py-2"
+                    className="flex items-center justify-between gap-3 rounded-lg border border-lab-250 px-3 py-2"
                   >
-                    <dt className="text-sm text-slate-700">
+                    <dt className="text-sm text-lab-800">
                       <span className="mr-2 rounded bg-lab-100 px-1.5 py-0.5 font-mono text-xs">
                         {outcome}
                       </span>
@@ -286,7 +286,7 @@ export function ExperimentResultsPage() {
                       <span className="font-mono text-sm font-semibold text-lab-900">
                         {stats.outcome_frequency[outcome] ?? 0}
                       </span>
-                      <span className="ml-2 font-mono text-xs text-slate-500">
+                      <span className="ml-2 font-mono text-xs text-lab-600">
                         {formatPercent(rate)}
                       </span>
                     </dd>

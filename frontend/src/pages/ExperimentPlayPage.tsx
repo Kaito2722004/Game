@@ -205,17 +205,17 @@ export function ExperimentPlayPage() {
               {activeMatch ? (
                 <dl className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <dt className="text-slate-500">Rounds recorded</dt>
+                    <dt className="text-lab-600">Rounds recorded</dt>
                     <dd className="font-mono text-lab-900">
                       {roundsForMatch.length} / {totalRounds}
                     </dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-slate-500">{activeMatch.participant_a_label} score</dt>
+                    <dt className="text-lab-600">{activeMatch.participant_a_label} score</dt>
                     <dd className="font-mono text-lab-900">{activeMatch.player_a_score}</dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-slate-500">{activeMatch.participant_b_label} score</dt>
+                    <dt className="text-lab-600">{activeMatch.participant_b_label} score</dt>
                     <dd className="font-mono text-lab-900">{activeMatch.player_b_score}</dd>
                   </div>
                 </dl>
@@ -223,7 +223,7 @@ export function ExperimentPlayPage() {
 
               <div className="h-2 overflow-hidden rounded-full bg-lab-200">
                 <div
-                  className="h-full rounded-full bg-indigo-600 transition-all"
+                  className="h-full rounded-full bg-violet-600 transition-all"
                   style={{
                     width: `${totalRounds > 0 ? Math.min(100, (roundsForMatch.length / totalRounds) * 100) : 0}%`,
                   }}
@@ -237,19 +237,19 @@ export function ExperimentPlayPage() {
 
               {roundsForMatch.length > 0 ? (
                 <div>
-                  <h3 className="mb-2 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+                  <h3 className="mb-2 text-xs font-semibold tracking-wide text-lab-600 uppercase">
                     History
                   </h3>
                   <ul className="max-h-64 space-y-1 overflow-y-auto">
                     {roundsForMatch.map((round) => (
                       <li
                         key={round.id}
-                        className="flex items-center justify-between gap-2 rounded border border-lab-100 px-2 py-1.5 text-xs"
+                        className="flex items-center justify-between gap-2 rounded border border-lab-250 px-2 py-1.5 text-xs"
                       >
-                        <span className="font-mono text-slate-500">R{round.round_number}</span>
+                        <span className="font-mono text-lab-600">R{round.round_number}</span>
                         <ActionBadge action={round.player_a_action} showLabel={false} />
                         <ActionBadge action={round.player_b_action} showLabel={false} />
-                        <span className="font-mono tabular-nums text-slate-600">
+                        <span className="font-mono tabular-nums text-lab-700">
                           {round.player_a_payoff}–{round.player_b_payoff}
                         </span>
                       </li>
@@ -340,7 +340,7 @@ export function ExperimentPlayPage() {
                     </div>
 
                     {!choiceA || !choiceB ? (
-                      <p className="text-center text-xs text-slate-500">
+                      <p className="text-center text-xs text-lab-600">
                         Both players must choose before the round can be revealed.
                       </p>
                     ) : null}
@@ -355,8 +355,8 @@ export function ExperimentPlayPage() {
                     />
                     <CardBody className="space-y-3">
                       <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="rounded-lg border border-lab-200 p-3">
-                          <p className="text-xs text-slate-500">
+                        <div className="rounded-lg border border-lab-250 p-3">
+                          <p className="text-xs text-lab-600">
                             {activeMatch?.participant_a_label ?? "Player A"}
                           </p>
                           <div className="mt-1 flex items-center justify-between">
@@ -366,8 +366,8 @@ export function ExperimentPlayPage() {
                             </span>
                           </div>
                         </div>
-                        <div className="rounded-lg border border-lab-200 p-3">
-                          <p className="text-xs text-slate-500">
+                        <div className="rounded-lg border border-lab-250 p-3">
+                          <p className="text-xs text-lab-600">
                             {activeMatch?.participant_b_label ?? "Player B"}
                           </p>
                           <div className="mt-1 flex items-center justify-between">
@@ -379,11 +379,11 @@ export function ExperimentPlayPage() {
                         </div>
                       </div>
 
-                      <p className="rounded-lg bg-lab-50 p-3 text-sm leading-relaxed text-slate-700">
+                      <p className="rounded-lg bg-lab-50 p-3 text-sm leading-relaxed text-lab-800">
                         {OUTCOME_DESCRIPTIONS[outcome]}
                       </p>
 
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-lab-600">
                         Payoffs were calculated by the backend from this experiment&apos;s
                         payoff matrix.
                       </p>

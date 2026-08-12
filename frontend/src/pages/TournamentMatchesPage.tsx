@@ -54,7 +54,7 @@ export function TournamentMatchesPage() {
     {
       key: "sequence",
       header: "#",
-      render: (row) => <span className="font-mono text-xs text-slate-500">{row.sequence}</span>,
+      render: (row) => <span className="font-mono text-xs text-lab-600">{row.sequence}</span>,
     },
     {
       key: "pairing",
@@ -62,7 +62,7 @@ export function TournamentMatchesPage() {
       render: (row) => (
         <span className="text-sm font-medium text-lab-900">
           {humanizeCode(row.strategy_a_id)}{" "}
-          <span className="text-slate-400">vs</span> {humanizeCode(row.strategy_b_id)}
+          <span className="text-lab-500">vs</span> {humanizeCode(row.strategy_b_id)}
         </span>
       ),
     },
@@ -89,7 +89,7 @@ export function TournamentMatchesPage() {
       align: "right",
       hideOnMobile: true,
       render: (row) => (
-        <span className="font-mono text-xs text-green-800">
+        <span className="font-mono text-xs text-emerald-300">
           {formatPercent(row.player_a_cooperation_count / Math.max(1, row.rounds_played))}
         </span>
       ),
@@ -214,12 +214,12 @@ export function TournamentMatchesPage() {
             {detailOutcomes ? (
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {OUTCOME_ORDER.map((outcome) => (
-                  <div key={outcome} className="rounded-lg border border-lab-200 p-2.5 text-center">
-                    <p className="font-mono text-xs text-slate-500">{outcome}</p>
+                  <div key={outcome} className="rounded-lg border border-lab-250 p-2.5 text-center">
+                    <p className="font-mono text-xs text-lab-600">{outcome}</p>
                     <p className="text-lg font-semibold text-lab-900">
                       {detailOutcomes[outcome]}
                     </p>
-                    <p className="text-[10px] leading-tight text-slate-500">
+                    <p className="text-[10px] leading-tight text-lab-600">
                       {OUTCOME_LABELS[outcome]}
                     </p>
                   </div>

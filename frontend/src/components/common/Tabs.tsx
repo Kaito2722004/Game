@@ -27,7 +27,7 @@ export function Tabs({ items, active, onChange, className }: TabsProps) {
   return (
     <div
       role="tablist"
-      className={cn("flex gap-1 overflow-x-auto border-b border-lab-200", className)}
+      className={cn("flex gap-1 overflow-x-auto border-b border-lab-250", className)}
     >
       {items.map((item, index) => {
         const selected = item.id === active;
@@ -43,8 +43,8 @@ export function Tabs({ items, active, onChange, className }: TabsProps) {
             className={cn(
               "flex shrink-0 items-center gap-2 border-b-2 px-4 py-2.5 text-sm font-medium transition-colors",
               selected
-                ? "border-indigo-600 text-indigo-700"
-                : "border-transparent text-slate-500 hover:border-lab-300 hover:text-lab-800",
+                ? "border-violet-500 text-violet-300"
+                : "border-transparent text-lab-600 hover:border-lab-300 hover:text-lab-800",
             )}
           >
             {item.icon}

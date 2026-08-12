@@ -107,7 +107,7 @@ export function TournamentDetailPage() {
       render: (row) => (
         <div>
           <p className="font-medium text-lab-900">{row.strategy_name}</p>
-          <p className="font-mono text-[11px] text-slate-400">{row.strategy_id}</p>
+          <p className="font-mono text-[11px] text-lab-500">{row.strategy_id}</p>
         </div>
       ),
     },
@@ -148,7 +148,7 @@ export function TournamentDetailPage() {
       header: "Cooperation",
       align: "right",
       render: (row) => (
-        <span className="font-mono tabular-nums text-green-800">
+        <span className="font-mono tabular-nums text-emerald-300">
           {formatPercent(row.cooperation_rate)}
         </span>
       ),
@@ -159,7 +159,7 @@ export function TournamentDetailPage() {
       align: "right",
       hideOnMobile: true,
       render: (row) => (
-        <span className="font-mono tabular-nums text-red-800">
+        <span className="font-mono tabular-nums text-rose-300">
           {formatPercent(row.defection_rate)}
         </span>
       ),
@@ -240,10 +240,10 @@ export function TournamentDetailPage() {
       </div>
 
       {detail.status === "FAILED" && detail.error_message ? (
-        <Card className="mt-4 border-red-200">
+        <Card className="mt-4 border-rose-500/30">
           <CardBody>
-            <p className="text-sm font-medium text-red-800">The run failed</p>
-            <p className="mt-1 font-mono text-xs text-red-700">{detail.error_message}</p>
+            <p className="text-sm font-medium text-rose-300">The run failed</p>
+            <p className="mt-1 font-mono text-xs text-rose-300">{detail.error_message}</p>
           </CardBody>
         </Card>
       ) : null}
@@ -289,8 +289,8 @@ export function TournamentDetailPage() {
                   onRowClick={setSelectedStrategy}
                   highlightRow={(row) => row.rank === 1}
                 />
-                <div className="border-t border-lab-100 px-5 py-3">
-                  <p className="text-xs text-slate-500">{results.data?.note}</p>
+                <div className="border-t border-lab-250 px-5 py-3">
+                  <p className="text-xs text-lab-600">{results.data?.note}</p>
                 </div>
               </Card>
 
@@ -371,7 +371,7 @@ export function TournamentDetailPage() {
                       strategies={rankings.map((row) => row.strategy_id)}
                     />
                   ) : (
-                    <p className="text-sm text-slate-500">Loading head-to-head data…</p>
+                    <p className="text-sm text-lab-600">Loading head-to-head data…</p>
                   )}
                 </CardBody>
               </Card>
@@ -401,8 +401,8 @@ export function TournamentDetailPage() {
               ["Cooperations", String(selectedStrategy.cooperation_count)],
               ["Defections", String(selectedStrategy.defection_count)],
             ].map(([label, value]) => (
-              <div key={label} className="rounded-lg border border-lab-200 p-2.5">
-                <dt className="text-[11px] tracking-wide text-slate-500 uppercase">{label}</dt>
+              <div key={label} className="rounded-lg border border-lab-250 p-2.5">
+                <dt className="text-[11px] tracking-wide text-lab-600 uppercase">{label}</dt>
                 <dd className="font-mono text-sm font-semibold text-lab-900">{value}</dd>
               </div>
             ))}
@@ -411,8 +411,8 @@ export function TournamentDetailPage() {
       </Dialog>
 
       {isCompleted ? (
-        <p className="mt-4 text-center text-xs text-slate-500">
-          <Link to={`/tournament/${detail.id}/matches`} className="text-indigo-600 hover:underline">
+        <p className="mt-4 text-center text-xs text-lab-600">
+          <Link to={`/tournament/${detail.id}/matches`} className="text-violet-400 hover:underline">
             Inspect every individual match
           </Link>
         </p>
@@ -438,11 +438,11 @@ function HeadToHeadTable({
         </caption>
         <thead>
           <tr>
-            <th scope="col" className="px-2 py-2 text-xs text-slate-500">
+            <th scope="col" className="px-2 py-2 text-xs text-lab-600">
               vs →
             </th>
             {strategies.map((code) => (
-              <th key={code} scope="col" className="px-2 py-2 text-xs font-medium text-slate-600">
+              <th key={code} scope="col" className="px-2 py-2 text-xs font-medium text-lab-700">
                 {code}
               </th>
             ))}
@@ -450,8 +450,8 @@ function HeadToHeadTable({
         </thead>
         <tbody>
           {strategies.map((rowCode) => (
-            <tr key={rowCode} className="border-t border-lab-100">
-              <th scope="row" className="px-2 py-2 text-xs font-medium text-slate-600">
+            <tr key={rowCode} className="border-t border-lab-250">
+              <th scope="row" className="px-2 py-2 text-xs font-medium text-lab-700">
                 {rowCode}
               </th>
               {strategies.map((columnCode) => {
@@ -462,7 +462,7 @@ function HeadToHeadTable({
                     className="px-2 py-2 text-center font-mono text-xs tabular-nums"
                   >
                     {value === undefined ? (
-                      <span className="text-slate-300">—</span>
+                      <span className="text-lab-400">—</span>
                     ) : (
                       value.toFixed(2)
                     )}

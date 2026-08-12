@@ -81,11 +81,11 @@ export function TournamentPage() {
         <div className="min-w-0">
           <Link
             to={`/tournament/${row.id}`}
-            className="font-medium text-indigo-700 hover:text-indigo-900"
+            className="font-medium text-violet-300 hover:text-violet-200"
           >
             {row.name}
           </Link>
-          <p className="text-xs text-slate-500">{row.strategy_codes.length} strategies</p>
+          <p className="text-xs text-lab-600">{row.strategy_codes.length} strategies</p>
         </div>
       ),
     },
@@ -112,7 +112,7 @@ export function TournamentPage() {
       key: "created",
       header: "Created",
       hideOnMobile: true,
-      render: (row) => <span className="text-xs text-slate-500">{formatDate(row.created_at)}</span>,
+      render: (row) => <span className="text-xs text-lab-600">{formatDate(row.created_at)}</span>,
     },
   ];
 
@@ -161,21 +161,21 @@ export function TournamentPage() {
                             key={strategy.id}
                             className={
                               checked
-                                ? "flex cursor-pointer items-start gap-2.5 rounded-lg border-2 border-indigo-400 bg-indigo-50/50 p-2.5 transition-colors"
-                                : "flex cursor-pointer items-start gap-2.5 rounded-lg border-2 border-lab-200 p-2.5 transition-colors hover:border-lab-300"
+                                ? "flex cursor-pointer items-start gap-2.5 rounded-lg border-2 border-violet-400 bg-violet-500/10 p-2.5 transition-colors"
+                                : "flex cursor-pointer items-start gap-2.5 rounded-lg border-2 border-lab-250 p-2.5 transition-colors hover:border-lab-300"
                             }
                           >
                             <input
                               type="checkbox"
                               checked={checked}
                               onChange={() => toggle(strategy.id)}
-                              className="mt-0.5 h-4 w-4 rounded border-lab-300 text-indigo-600"
+                              className="mt-0.5 h-4 w-4 rounded border-lab-300 text-violet-400"
                             />
                             <span className="min-w-0">
                               <span className="block text-sm font-medium text-lab-900">
                                 {strategy.name}
                               </span>
-                              <span className="block text-xs text-slate-500">
+                              <span className="block text-xs text-lab-600">
                                 {strategy.category === "NICE"
                                   ? "Never defects first"
                                   : strategy.category === "NASTY"
@@ -189,7 +189,7 @@ export function TournamentPage() {
                     </div>
                   )}
                   {tooFewStrategies ? (
-                    <p role="alert" className="mt-2 text-xs font-medium text-red-700">
+                    <p role="alert" className="mt-2 text-xs font-medium text-rose-300">
                       Select at least {MIN_STRATEGIES} strategies, or enable self-play.
                     </p>
                   ) : null}
@@ -242,7 +242,7 @@ export function TournamentPage() {
                   onChange={(event) => setSelfPlay(event.target.checked)}
                 />
 
-                <div className="space-y-2 rounded-lg border border-lab-200 p-3">
+                <div className="space-y-2 rounded-lg border border-lab-250 p-3">
                   <CheckboxField
                     label="Uncertain ending"
                     description="Model the shadow of the future with a continuation probability."
@@ -262,7 +262,7 @@ export function TournamentPage() {
                         step={0.01}
                         value={continuation}
                         onChange={(event) => setContinuation(Number(event.target.value))}
-                        className="mt-1 w-full accent-indigo-600"
+                        className="mt-1 w-full accent-violet-500"
                       />
                     </div>
                   ) : null}

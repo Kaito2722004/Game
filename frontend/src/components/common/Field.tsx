@@ -20,9 +20,9 @@ function FieldShell({ label, hint, error, help, htmlFor, children }: FieldShellP
         {hint ? <InfoTooltip text={hint} label={`About ${label}`} /> : null}
       </div>
       {children}
-      {help && !error ? <p className="text-xs text-slate-500">{help}</p> : null}
+      {help && !error ? <p className="text-xs text-lab-600">{help}</p> : null}
       {error ? (
-        <p role="alert" className="text-xs font-medium text-red-700">
+        <p role="alert" className="text-xs font-medium text-rose-300">
           {error}
         </p>
       ) : null}
@@ -31,9 +31,10 @@ function FieldShell({ label, hint, error, help, htmlFor, children }: FieldShellP
 }
 
 const CONTROL_CLASS =
-  "w-full rounded-lg border border-lab-300 bg-white px-3 py-2 text-sm text-lab-900 " +
-  "transition-colors placeholder:text-slate-400 focus:border-indigo-500 " +
-  "disabled:cursor-not-allowed disabled:bg-lab-100";
+  "w-full rounded-xl border border-lab-300 bg-lab-50/60 px-3 py-2 text-sm text-lab-900 " +
+  "transition-all duration-200 placeholder:text-lab-500 hover:border-lab-400/60 " +
+  "focus:border-violet-500 focus:bg-lab-50 focus:shadow-[0_0_0_3px_rgb(139_92_246/0.15)] " +
+  "disabled:cursor-not-allowed disabled:bg-lab-200 disabled:text-lab-500";
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -103,14 +104,14 @@ export function CheckboxField({ label, description, id, ...rest }: CheckboxField
       <input
         id={fieldId}
         type="checkbox"
-        className="mt-0.5 h-4 w-4 rounded border-lab-300 text-indigo-600"
+        className="mt-0.5 h-4 w-4 rounded border-lab-300 text-violet-400"
         {...rest}
       />
       <div>
         <label htmlFor={fieldId} className="text-sm font-medium text-lab-800">
           {label}
         </label>
-        {description ? <p className="text-xs text-slate-500">{description}</p> : null}
+        {description ? <p className="text-xs text-lab-600">{description}</p> : null}
       </div>
     </div>
   );

@@ -66,7 +66,7 @@ export function GameTheoryPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader title="What is the Prisoner's Dilemma?" />
-            <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
               <p>
                 Two people are questioned separately about a crime they committed
                 together. Each can stay silent (<strong>cooperate</strong> with the other
@@ -89,7 +89,7 @@ export function GameTheoryPage() {
           <Card>
             <CardHeader title="Why it is a dilemma" />
             <CardBody className="space-y-3">
-              <p className="text-sm leading-relaxed text-slate-700">
+              <p className="text-sm leading-relaxed text-lab-800">
                 Whatever the other person does, defecting pays you more. So a purely
                 self-interested player defects — and if both reason that way, both end up
                 worse off than if they had cooperated. Rational individual choices produce
@@ -111,14 +111,14 @@ export function GameTheoryPage() {
             />
             <CardBody className="space-y-4">
               <PayoffMatrixGrid matrix={CLASSIC} analysis={analysis} />
-              <p className="text-sm leading-relaxed text-slate-700">
+              <p className="text-sm leading-relaxed text-lab-800">
                 Each cell holds two numbers: what Player A earns, then what Player B
                 earns. Player A picks a row, Player B picks a column, and they choose at
                 the same time without seeing each other&apos;s choice.
               </p>
               <Link
                 to="/payoff-matrix"
-                className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-800"
+                className="inline-flex items-center gap-1 text-sm font-medium text-violet-400 hover:text-violet-300"
               >
                 Try editing the numbers yourself
                 <ArrowRight className="h-4 w-4" aria-hidden />
@@ -143,7 +143,7 @@ export function GameTheoryPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader title="What a dominant strategy is" />
-            <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
               <p>
                 Work through it from Player A&apos;s point of view. Suppose B cooperates:
                 A earns 3 by cooperating, or 5 by defecting — defecting is better. Now
@@ -167,7 +167,7 @@ export function GameTheoryPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader title="What a Nash equilibrium is" />
-            <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
               <p>
                 An outcome is a Nash equilibrium when neither player regrets their own
                 choice, given what the other did. Nobody can do better by changing their
@@ -195,7 +195,7 @@ export function GameTheoryPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader title="Comparing outcomes for everyone" />
-            <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
               <p>
                 Mutual defection pays 1 each. Mutual cooperation pays 3 each. Both players
                 prefer the second, so the equilibrium is not where they would collectively
@@ -219,7 +219,7 @@ export function GameTheoryPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader title="Playing more than once" />
-            <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
               <p>
                 Played once, there is no reason to cooperate. Played repeatedly against
                 the same person, what you do now changes how they treat you later — a
@@ -245,14 +245,14 @@ export function GameTheoryPage() {
 
           <Card>
             <CardHeader title="Try it" />
-            <CardBody className="space-y-3 text-sm text-slate-700">
+            <CardBody className="space-y-3 text-sm text-lab-800">
               <p>
                 Run the same pair of strategies with a fixed length, then with a
                 continuation probability, and compare how the match plays out.
               </p>
               <Link
                 to="/match-simulator"
-                className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-800"
+                className="inline-flex items-center gap-1 text-sm font-medium text-violet-400 hover:text-violet-300"
               >
                 Open the match simulator
                 <ArrowRight className="h-4 w-4" aria-hidden />
@@ -266,7 +266,7 @@ export function GameTheoryPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader title="Tit-for-Tat" description="Two rules, and that is all" />
-            <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
               <ol className="list-inside list-decimal space-y-1 font-medium text-lab-900">
                 <li>Cooperate in the first round.</li>
                 <li>After that, copy whatever the opponent did last round.</li>
@@ -293,7 +293,7 @@ export function GameTheoryPage() {
                   see that cooperating pays.
                 </li>
               </ul>
-              <p className="rounded-lg bg-amber-50 p-3 text-xs text-amber-900">
+              <p className="rounded-lg bg-amber-400/10 p-3 text-xs text-amber-200">
                 This does not mean Tit-for-Tat is universally best. How it places depends
                 on the payoff matrix and on which opponents are in the field. Run a
                 tournament and see what actually happens.
@@ -303,7 +303,7 @@ export function GameTheoryPage() {
 
           <Card>
             <CardHeader title="See it play" />
-            <CardBody className="space-y-3 text-sm text-slate-700">
+            <CardBody className="space-y-3 text-sm text-lab-800">
               <p>
                 Against Always Defect over 10 rounds, Tit-for-Tat loses the first round
                 and then matches defection for the rest. Against another nice strategy it
@@ -311,7 +311,7 @@ export function GameTheoryPage() {
               </p>
               <Link
                 to="/strategies"
-                className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-800"
+                className="inline-flex items-center gap-1 text-sm font-medium text-violet-400 hover:text-violet-300"
               >
                 Browse all six strategies
                 <ArrowRight className="h-4 w-4" aria-hidden />
@@ -325,7 +325,7 @@ export function GameTheoryPage() {
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader title="Axelrod-style tournaments" />
-            <CardBody className="space-y-3 text-sm leading-relaxed text-slate-700">
+            <CardBody className="space-y-3 text-sm leading-relaxed text-lab-800">
               <p>
                 Robert Axelrod invited researchers to submit strategies for the repeated
                 Prisoner&apos;s Dilemma, then had every entry play every other entry over
@@ -347,14 +347,14 @@ export function GameTheoryPage() {
 
           <Card>
             <CardHeader title="Run your own" />
-            <CardBody className="space-y-3 text-sm text-slate-700">
+            <CardBody className="space-y-3 text-sm text-lab-800">
               <p>
                 Pick the strategies, the number of rounds and the payoff matrix, then let
                 the backend simulate every pairing and rank the field.
               </p>
               <Link
                 to="/tournament"
-                className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-800"
+                className="inline-flex items-center gap-1 text-sm font-medium text-violet-400 hover:text-violet-300"
               >
                 Go to the tournament page
                 <ArrowRight className="h-4 w-4" aria-hidden />

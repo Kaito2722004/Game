@@ -27,7 +27,7 @@ export function RoundHistoryTable({
     {
       key: "round",
       header: "Round",
-      render: (row) => <span className="font-mono text-xs text-slate-500">{row.round_number}</span>,
+      render: (row) => <span className="font-mono text-xs text-lab-600">{row.round_number}</span>,
     },
     {
       key: "actionA",
@@ -56,7 +56,7 @@ export function RoundHistoryTable({
       header: "Outcome",
       hideOnMobile: true,
       render: (row) => (
-        <span className="text-xs text-slate-600">{OUTCOME_LABELS[row.outcome]}</span>
+        <span className="text-xs text-lab-700">{OUTCOME_LABELS[row.outcome]}</span>
       ),
     },
   ];
@@ -72,7 +72,7 @@ export function RoundHistoryTable({
       />
 
       {rounds.length > initialLimit ? (
-        <div className="flex justify-center border-t border-lab-100 py-3">
+        <div className="flex justify-center border-t border-lab-250 py-3">
           <Button variant="ghost" size="sm" onClick={() => setShowAll((value) => !value)}>
             {showAll
               ? `Show first ${initialLimit} rounds`

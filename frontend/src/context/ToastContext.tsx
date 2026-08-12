@@ -32,16 +32,16 @@ const ToastContext = createContext<ToastContextValue | null>(null);
 
 const TONE_STYLES: Record<ToastTone, { ring: string; icon: ReactNode }> = {
   success: {
-    ring: "ring-emerald-200 bg-emerald-50",
-    icon: <CheckCircle2 className="h-5 w-5 text-emerald-600" aria-hidden />,
+    ring: "ring-emerald-400/30 bg-emerald-400/10",
+    icon: <CheckCircle2 className="h-5 w-5 text-emerald-400" aria-hidden />,
   },
   error: {
-    ring: "ring-red-200 bg-red-50",
-    icon: <AlertCircle className="h-5 w-5 text-red-600" aria-hidden />,
+    ring: "ring-rose-500/30 bg-rose-500/10",
+    icon: <AlertCircle className="h-5 w-5 text-rose-400" aria-hidden />,
   },
   info: {
-    ring: "ring-blue-200 bg-blue-50",
-    icon: <Info className="h-5 w-5 text-blue-600" aria-hidden />,
+    ring: "ring-sky-500/30 bg-sky-500/10",
+    icon: <Info className="h-5 w-5 text-sky-400" aria-hidden />,
   },
 };
 
@@ -98,14 +98,14 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-semibold text-lab-950">{toast.title}</p>
                 {toast.description ? (
-                  <p className="mt-0.5 text-xs break-words text-slate-600">{toast.description}</p>
+                  <p className="mt-0.5 text-xs break-words text-lab-700">{toast.description}</p>
                 ) : null}
               </div>
               <button
                 type="button"
                 onClick={() => dismiss(toast.id)}
                 aria-label="Dismiss notification"
-                className="rounded p-0.5 text-slate-400 transition-colors hover:text-slate-700"
+                className="rounded p-0.5 text-lab-500 transition-colors hover:text-lab-800"
               >
                 <X className="h-4 w-4" aria-hidden />
               </button>

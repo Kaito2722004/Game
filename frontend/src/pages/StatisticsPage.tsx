@@ -42,8 +42,8 @@ function StatisticsGrid({ stats }: { stats: DescriptiveStatistics }) {
         ["Minimum", formatNumber(stats.minimum)],
         ["Maximum", formatNumber(stats.maximum)],
       ].map(([label, value]) => (
-        <div key={label} className="rounded-lg border border-lab-200 p-3">
-          <p className="text-[11px] tracking-wide text-slate-500 uppercase">{label}</p>
+        <div key={label} className="rounded-lg border border-lab-250 p-3">
+          <p className="text-[11px] tracking-wide text-lab-600 uppercase">{label}</p>
           <p className="mt-0.5 font-mono text-lg font-semibold text-lab-900">{value}</p>
         </div>
       ))}
@@ -363,16 +363,16 @@ export function StatisticsPage() {
                     </div>
 
                     <div className="grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-lg border border-lab-200 p-3">
-                        <p className="text-xs text-slate-500">
+                      <div className="rounded-lg border border-lab-250 p-3">
+                        <p className="text-xs text-lab-600">
                           Correlation: expected cooperation vs actual
                         </p>
                         <p className="font-mono text-lg font-semibold text-lab-900">
                           {formatCorrelation(surveyStats.data.correlation_expected_vs_actual)}
                         </p>
                       </div>
-                      <div className="rounded-lg border border-lab-200 p-3">
-                        <p className="text-xs text-slate-500">
+                      <div className="rounded-lg border border-lab-250 p-3">
+                        <p className="text-xs text-lab-600">
                           Correlation: trust after vs actual
                         </p>
                         <p className="font-mono text-lg font-semibold text-lab-900">
@@ -381,7 +381,7 @@ export function StatisticsPage() {
                       </div>
                     </div>
 
-                    <p className="rounded-lg bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
+                    <p className="rounded-lg bg-amber-400/10 p-3 text-xs leading-relaxed text-amber-200">
                       These are <strong>correlations</strong>, not causes. A relationship
                       between what people expected and what they did says nothing about
                       which produced the other, and a classroom sample is far too small to

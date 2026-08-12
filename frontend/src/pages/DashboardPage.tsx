@@ -206,13 +206,13 @@ export function DashboardPage() {
               description="The idea behind every number on this page"
             />
             <CardBody className="space-y-3">
-              <p className="text-sm leading-relaxed text-slate-700">
+              <p className="text-sm leading-relaxed text-lab-800">
                 Two players choose privately and at the same time: cooperate or defect.
                 If both cooperate they each do well. If one defects while the other
                 cooperates, the defector does best of all and the cooperator does worst.
                 If both defect, they each do badly.
               </p>
-              <p className="text-sm leading-relaxed text-slate-700">
+              <p className="text-sm leading-relaxed text-lab-800">
                 Defecting pays more whatever the other player does, so it is the rational
                 individual choice — yet if both follow that reasoning they end up worse
                 off than if both had cooperated. That gap between individual and
@@ -221,7 +221,7 @@ export function DashboardPage() {
               <ConceptCard {...{ term: "Repeated game", definition: "The game is played multiple times, so current actions can affect future interactions." }} />
               <Link
                 to="/game-theory"
-                className="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-800"
+                className="inline-flex items-center gap-1 text-sm font-medium text-violet-400 hover:text-violet-300"
               >
                 Read the full explanation
                 <ArrowRight className="h-4 w-4" aria-hidden />
@@ -238,7 +238,7 @@ export function DashboardPage() {
             actions={
               <Link
                 to="/tournament"
-                className="text-xs font-medium text-indigo-600 hover:text-indigo-800"
+                className="text-xs font-medium text-violet-400 hover:text-violet-300"
               >
                 View all
               </Link>
@@ -251,18 +251,18 @@ export function DashboardPage() {
               description="Create a round robin to compare the six strategies."
             />
           ) : (
-            <ul className="divide-y divide-lab-100">
+            <ul className="divide-y divide-lab-250">
               {(tournaments.data ?? []).slice(0, 5).map((tournament) => (
                 <li key={tournament.id}>
                   <Link
                     to={`/tournament/${tournament.id}`}
-                    className="flex items-center justify-between gap-3 px-5 py-3 transition-colors hover:bg-lab-50"
+                    className="flex items-center justify-between gap-3 px-5 py-3 transition-colors hover:bg-lab-150"
                   >
                     <div className="min-w-0">
                       <p className="truncate text-sm font-medium text-lab-900">
                         {tournament.name}
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-lab-600">
                         {tournament.strategy_codes.length} strategies ·{" "}
                         {tournament.rounds_per_match} rounds · {formatDate(tournament.created_at)}
                       </p>
@@ -281,7 +281,7 @@ export function DashboardPage() {
             actions={
               <Link
                 to="/experiments"
-                className="text-xs font-medium text-indigo-600 hover:text-indigo-800"
+                className="text-xs font-medium text-violet-400 hover:text-violet-300"
               >
                 View all
               </Link>
@@ -294,18 +294,18 @@ export function DashboardPage() {
               description="Set up a classroom session to record how people actually play."
             />
           ) : (
-            <ul className="divide-y divide-lab-100">
+            <ul className="divide-y divide-lab-250">
               {(experiments.data ?? []).slice(0, 5).map((experiment) => (
                 <li key={experiment.id}>
                   <Link
                     to={`/experiments/${experiment.id}`}
-                    className="flex items-center justify-between gap-3 px-5 py-3 transition-colors hover:bg-lab-50"
+                    className="flex items-center justify-between gap-3 px-5 py-3 transition-colors hover:bg-lab-150"
                   >
                     <div className="min-w-0">
                       <p className="truncate text-sm font-medium text-lab-900">
                         {experiment.name}
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-lab-600">
                         {experiment.participant_count} participants · {experiment.rounds} rounds
                       </p>
                     </div>

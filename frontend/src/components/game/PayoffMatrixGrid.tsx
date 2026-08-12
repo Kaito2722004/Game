@@ -42,16 +42,16 @@ export function PayoffMatrixGrid({
     <div className="overflow-x-auto">
       <div className="inline-grid min-w-[22rem] grid-cols-[auto_1fr_1fr] gap-2">
         <div aria-hidden />
-        <div className="pb-1 text-center text-xs font-semibold tracking-wide text-slate-500 uppercase">
+        <div className="pb-1 text-center text-xs font-semibold tracking-wide text-lab-600 uppercase">
           B: Cooperate
         </div>
-        <div className="pb-1 text-center text-xs font-semibold tracking-wide text-slate-500 uppercase">
+        <div className="pb-1 text-center text-xs font-semibold tracking-wide text-lab-600 uppercase">
           B: Defect
         </div>
 
         {["Cooperate", "Defect"].map((rowLabel, rowIndex) => (
           <div key={rowLabel} className="contents">
-            <div className="flex items-center pr-2 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+            <div className="flex items-center pr-2 text-xs font-semibold tracking-wide text-lab-600 uppercase">
               <span className="[writing-mode:vertical-rl] rotate-180 sm:writing-mode-horizontal sm:rotate-0">
                 A: {rowLabel}
               </span>
@@ -82,8 +82,10 @@ export function PayoffMatrixGrid({
                   aria-label={`${OUTCOME_LABELS[cell.outcome]}: player A ${values.player_a_payoff}, player B ${values.player_b_payoff}`}
                   className={cn(
                     "relative rounded-xl border-2 p-4 transition-all",
-                    onCellClick && "cursor-pointer hover:border-indigo-400 hover:shadow-md",
-                    isSelected ? "border-indigo-500 bg-indigo-50/60" : "border-lab-200 bg-white",
+                    onCellClick && "cursor-pointer hover:border-violet-400/60 hover:shadow-[0_6px_22px_-8px_rgb(139_92_246/0.55)]",
+                    isSelected
+                      ? "border-violet-500 bg-violet-500/10 shadow-[0_6px_22px_-8px_rgb(139_92_246/0.6)]"
+                      : "border-lab-250 bg-lab-100",
                   )}
                 >
                   <div className="mb-2 flex flex-wrap items-center gap-1">
@@ -93,7 +95,7 @@ export function PayoffMatrixGrid({
                     {isNash ? (
                       <span
                         title="Nash equilibrium, as computed by the backend"
-                        className="inline-flex items-center gap-0.5 rounded bg-indigo-100 px-1.5 py-0.5 text-[10px] font-semibold text-indigo-800"
+                        className="inline-flex items-center gap-0.5 rounded bg-violet-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-violet-300"
                       >
                         <Target className="h-3 w-3" aria-hidden />
                         Nash
@@ -102,7 +104,7 @@ export function PayoffMatrixGrid({
                     {isOptimal ? (
                       <span
                         title="Pareto-optimal, as computed by the backend"
-                        className="inline-flex items-center gap-0.5 rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-800"
+                        className="inline-flex items-center gap-0.5 rounded bg-emerald-400/15 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-300"
                       >
                         <Crown className="h-3 w-3" aria-hidden />
                         Pareto
@@ -120,9 +122,9 @@ export function PayoffMatrixGrid({
                         onChange={(event) =>
                           onCellChange?.(cell.outcome, "a", Number(event.target.value))
                         }
-                        className="w-16 rounded-lg border border-lab-300 px-2 py-1.5 text-center font-mono text-sm text-blue-700 focus:border-indigo-500"
+                        className="w-16 rounded-lg border border-lab-300 bg-lab-50/60 px-2 py-1.5 text-center font-mono text-sm text-sky-300 transition-colors focus:border-violet-500 focus:bg-lab-50"
                       />
-                      <span className="text-slate-400" aria-hidden>
+                      <span className="text-lab-500" aria-hidden>
                         ,
                       </span>
                       <input
@@ -133,18 +135,18 @@ export function PayoffMatrixGrid({
                         onChange={(event) =>
                           onCellChange?.(cell.outcome, "b", Number(event.target.value))
                         }
-                        className="w-16 rounded-lg border border-lab-300 px-2 py-1.5 text-center font-mono text-sm text-orange-700 focus:border-indigo-500"
+                        className="w-16 rounded-lg border border-lab-300 bg-lab-50/60 px-2 py-1.5 text-center font-mono text-sm text-orange-300 transition-colors focus:border-violet-500 focus:bg-lab-50"
                       />
                     </div>
                   ) : (
                     <p className="text-center font-mono text-xl font-semibold text-lab-900">
-                      <span className="text-blue-700">{values.player_a_payoff}</span>
-                      <span className="text-slate-400">, </span>
-                      <span className="text-orange-700">{values.player_b_payoff}</span>
+                      <span className="text-sky-300">{values.player_a_payoff}</span>
+                      <span className="text-lab-500">, </span>
+                      <span className="text-orange-300">{values.player_b_payoff}</span>
                     </p>
                   )}
 
-                  <p className="mt-2 text-center text-[11px] text-slate-500">
+                  <p className="mt-2 text-center text-[11px] text-lab-600">
                     {OUTCOME_LABELS[cell.outcome]}
                   </p>
                 </div>
@@ -154,9 +156,9 @@ export function PayoffMatrixGrid({
         ))}
       </div>
 
-      <p className="mt-3 text-xs text-slate-500">
-        Each cell shows <span className="font-medium text-blue-700">Player A&apos;s payoff</span>,{" "}
-        <span className="font-medium text-orange-700">Player B&apos;s payoff</span>.
+      <p className="mt-3 text-xs text-lab-600">
+        Each cell shows <span className="font-medium text-sky-300">Player A&apos;s payoff</span>,{" "}
+        <span className="font-medium text-orange-300">Player B&apos;s payoff</span>.
       </p>
     </div>
   );

@@ -38,8 +38,8 @@ export function HiddenChoicePanel({
             ? "border-green-300 bg-cooperate-soft"
             : "border-red-300 bg-defect-soft"
           : chosen
-            ? "border-indigo-300 bg-indigo-50/60"
-            : "border-lab-200 bg-white",
+            ? "border-violet-500/50 bg-violet-500/10"
+            : "border-lab-250 bg-lab-100",
       )}
     >
       <div className="mb-4 flex items-center justify-between gap-2">
@@ -51,13 +51,13 @@ export function HiddenChoicePanel({
               Revealed
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1 text-xs font-medium text-indigo-700">
+            <span className="inline-flex items-center gap-1 text-xs font-medium text-violet-300">
               <EyeOff className="h-3.5 w-3.5" aria-hidden />
               Choice hidden
             </span>
           )
         ) : (
-          <span className="text-xs text-slate-500">Waiting for a choice</span>
+          <span className="text-xs text-lab-600">Waiting for a choice</span>
         )}
       </div>
 
@@ -66,7 +66,7 @@ export function HiddenChoicePanel({
           <span
             className={cn(
               "inline-flex items-center gap-2 rounded-lg px-4 py-2 text-lg font-semibold",
-              choice === "COOPERATE" ? "text-green-900" : "text-red-900",
+              choice === "COOPERATE" ? "text-emerald-200" : "text-rose-200",
             )}
           >
             {choice === "COOPERATE" ? (
@@ -79,11 +79,11 @@ export function HiddenChoicePanel({
         </div>
       ) : chosen ? (
         <div className="flex flex-col items-center gap-2 py-6">
-          <span className="rounded-full bg-indigo-100 p-3 text-indigo-700" aria-hidden>
+          <span className="rounded-full bg-violet-500/20 p-3 text-violet-300" aria-hidden>
             <Check className="h-6 w-6" />
           </span>
-          <p className="text-sm font-medium text-indigo-900">Locked in</p>
-          <p className="text-center text-xs text-slate-500">
+          <p className="text-sm font-medium text-violet-200">Locked in</p>
+          <p className="text-center text-xs text-lab-600">
             The choice stays hidden until both players have decided.
           </p>
         </div>
@@ -115,7 +115,7 @@ export function HiddenChoicePanel({
       {chosen && !revealed ? (
         <div className="mt-3 flex justify-center">
           <Button variant="ghost" size="sm" onClick={() => onChoose(choice)} disabled>
-            <span className="text-xs text-slate-500">Choice recorded</span>
+            <span className="text-xs text-lab-600">Choice recorded</span>
           </Button>
         </div>
       ) : null}

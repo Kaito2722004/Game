@@ -26,7 +26,7 @@ export function InfoTooltip({ text, label = "More information" }: InfoTooltipPro
         aria-label={label}
         aria-describedby={open ? id : undefined}
         aria-expanded={open}
-        className="rounded-full text-lab-400 transition-colors hover:text-indigo-600"
+        className="rounded-full text-lab-400 transition-colors hover:text-violet-300"
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         onFocus={() => setOpen(true)}

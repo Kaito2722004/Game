@@ -30,7 +30,7 @@ export function ChartFrame({
             <h3 className="text-sm font-semibold text-lab-950">{title}</h3>
             {hint ? <InfoTooltip text={hint} label={`About ${title}`} /> : null}
           </div>
-          {description ? <p className="mt-0.5 text-xs text-slate-500">{description}</p> : null}
+          {description ? <p className="mt-0.5 text-xs text-lab-600">{description}</p> : null}
         </div>
         {actions}
       </figcaption>

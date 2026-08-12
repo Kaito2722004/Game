@@ -22,16 +22,16 @@ export function CardHeader({ title, description, actions, icon, className }: Car
   return (
     <header
       className={cn(
-        "flex flex-wrap items-start justify-between gap-3 border-b border-lab-200 px-5 py-4",
+        "flex flex-wrap items-start justify-between gap-3 border-b border-lab-250 px-5 py-4",
         className,
       )}
     >
       <div className="flex min-w-0 items-start gap-3">
-        {icon ? <span className="mt-0.5 text-indigo-600">{icon}</span> : null}
+        {icon ? <span className="mt-0.5 text-violet-400">{icon}</span> : null}
         <div className="min-w-0">
           <h2 className="text-base font-semibold text-lab-950">{title}</h2>
           {description ? (
-            <p className="mt-1 text-sm text-slate-600">{description}</p>
+            <p className="mt-1 text-sm text-lab-700">{description}</p>
           ) : null}
         </div>
       </div>

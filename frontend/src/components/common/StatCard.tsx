@@ -14,8 +14,8 @@ interface StatCardProps {
 
 const TONE_TEXT = {
   default: "text-lab-950",
-  cooperate: "text-green-800",
-  defect: "text-red-800",
+  cooperate: "text-emerald-300",
+  defect: "text-rose-300",
 } as const;
 
 export function StatCard({
@@ -28,10 +28,10 @@ export function StatCard({
   footer,
 }: StatCardProps) {
   return (
-    <div className="card p-5 transition-shadow hover:shadow-md">
+    <div className="card card-interactive p-5">
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-1.5">
-          <p className="text-xs font-medium tracking-wide text-slate-500 uppercase">{label}</p>
+          <p className="text-xs font-medium tracking-wide text-lab-600 uppercase">{label}</p>
           {hint ? <InfoTooltip text={hint} label={`About ${label}`} /> : null}
         </div>
         {icon ? <span className="text-lab-400">{icon}</span> : null}
@@ -43,7 +43,7 @@ export function StatCard({
         <p className={`mt-2 text-2xl font-semibold tabular-nums ${TONE_TEXT[tone]}`}>{value}</p>
       )}
 
-      {footer ? <div className="mt-2 text-xs text-slate-500">{footer}</div> : null}
+      {footer ? <div className="mt-2 text-xs text-lab-600">{footer}</div> : null}
     </div>
   );
 }

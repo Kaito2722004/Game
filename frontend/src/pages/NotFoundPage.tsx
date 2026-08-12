@@ -13,7 +13,7 @@ export function NotFoundPage() {
         action={
           <Link
             to="/dashboard"
-            className="text-sm font-medium text-indigo-600 hover:text-indigo-800"
+            className="text-sm font-medium text-violet-400 hover:text-violet-300"
           >
             Back to the dashboard
           </Link>

@@ -40,7 +40,7 @@ export function RequireRole({ roles, children, fallback }: RequireRoleProps) {
           <Link
             to="/login"
             state={{ from: location.pathname + location.search }}
-            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
+            className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-violet-700"
           >
             Sign in
           </Link>

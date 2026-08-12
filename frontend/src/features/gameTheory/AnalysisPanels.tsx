@@ -54,7 +54,7 @@ export function ConditionsPanel({ analysis }: { analysis: GameAnalysis }) {
         </div>
 
         {conditions.failed_conditions.length > 0 ? (
-          <ul className="space-y-1 rounded-lg bg-amber-50 p-3 text-xs text-amber-900">
+          <ul className="space-y-1 rounded-lg bg-amber-400/10 p-3 text-xs text-amber-200">
             {conditions.failed_conditions.map((reason, index) => (
               <li key={index}>{reason}</li>
             ))}
@@ -62,7 +62,7 @@ export function ConditionsPanel({ analysis }: { analysis: GameAnalysis }) {
         ) : null}
 
         {!conditions.is_symmetric ? (
-          <p className="rounded-lg bg-blue-50 p-3 text-xs text-blue-900">
+          <p className="rounded-lg bg-sky-500/10 p-3 text-xs text-sky-200">
             This matrix is asymmetric: the two players face different payoffs, so their
             T, R, P and S values differ.
           </p>
@@ -81,14 +81,14 @@ function OrderingCard({ label, ordering }: { label: string; ordering: PayoffOrde
   ];
 
   return (
-    <div className="rounded-lg border border-lab-200 p-3">
-      <p className="mb-2 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+    <div className="rounded-lg border border-lab-250 p-3">
+      <p className="mb-2 text-xs font-semibold tracking-wide text-lab-600 uppercase">
         {label}
       </p>
       <dl className="grid grid-cols-4 gap-2">
         {values.map((entry) => (
           <div key={entry.symbol} className="text-center">
-            <dt className="text-[11px] text-slate-500" title={entry.name}>
+            <dt className="text-[11px] text-lab-600" title={entry.name}>
               {entry.symbol}
             </dt>
             <dd className="font-mono text-lg font-semibold text-lab-900">{entry.value}</dd>
@@ -109,27 +109,27 @@ function ConditionRow({
   explanation: string;
 }) {
   return (
-    <div className="flex items-start gap-2.5 rounded-lg border border-lab-200 px-3 py-2">
+    <div className="flex items-start gap-2.5 rounded-lg border border-lab-250 px-3 py-2">
       <span
         className={
-          holds ? "mt-0.5 rounded-full bg-emerald-100 p-1" : "mt-0.5 rounded-full bg-red-100 p-1"
+          holds ? "mt-0.5 rounded-full bg-emerald-400/15 p-1" : "mt-0.5 rounded-full bg-rose-500/15 p-1"
         }
         aria-hidden
       >
         {holds ? (
-          <Check className="h-3 w-3 text-emerald-700" />
+          <Check className="h-3 w-3 text-emerald-400" />
         ) : (
-          <X className="h-3 w-3 text-red-700" />
+          <X className="h-3 w-3 text-rose-300" />
         )}
       </span>
       <div className="min-w-0">
         <p className="font-mono text-sm font-medium text-lab-900">
           {label}{" "}
-          <span className={holds ? "text-emerald-700" : "text-red-700"}>
+          <span className={holds ? "text-emerald-400" : "text-rose-300"}>
             — {holds ? "holds" : "fails"}
           </span>
         </p>
-        <p className="text-xs text-slate-600">{explanation}</p>
+        <p className="text-xs text-lab-700">{explanation}</p>
       </div>
     </div>
   );
@@ -153,7 +153,7 @@ export function DominancePanel({ analysis }: { analysis: GameAnalysis }) {
       />
       <CardBody className="space-y-3">
         {players.map(({ label, dominant }) => (
-          <div key={label} className="rounded-lg border border-lab-200 p-3">
+          <div key={label} className="rounded-lg border border-lab-250 p-3">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-sm font-medium text-lab-900">{label}</span>
               {dominant.exists && dominant.action ? (
@@ -167,7 +167,7 @@ export function DominancePanel({ analysis }: { analysis: GameAnalysis }) {
                 <Badge tone="neutral">{dominant.dominance.toLowerCase()}</Badge>
               ) : null}
             </div>
-            <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+            <p className="mt-1.5 text-xs leading-relaxed text-lab-700">
               {dominant.explanation}
             </p>
           </div>
@@ -190,7 +190,7 @@ export function NashPanel({ analysis }: { analysis: GameAnalysis }) {
       />
       <CardBody className="space-y-3">
         {analysis.nash_equilibria.length === 0 ? (
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-lab-700">
             This matrix has no pure-strategy Nash equilibrium. Every cell gives at least
             one player a reason to switch.
           </p>
@@ -198,7 +198,7 @@ export function NashPanel({ analysis }: { analysis: GameAnalysis }) {
           analysis.nash_equilibria.map((equilibrium) => (
             <div
               key={equilibrium.outcome}
-              className="rounded-lg border border-indigo-200 bg-indigo-50/50 p-3"
+              className="rounded-lg border border-violet-500/30 bg-violet-500/10 p-3"
             >
               <div className="flex flex-wrap items-center gap-2">
                 <Badge tone="accent" icon={<Target className="h-3 w-3" aria-hidden />}>
@@ -207,11 +207,11 @@ export function NashPanel({ analysis }: { analysis: GameAnalysis }) {
                 <span className="text-sm font-medium text-lab-900">
                   {OUTCOME_LABELS[equilibrium.outcome]}
                 </span>
-                <span className="font-mono text-sm text-slate-600">
+                <span className="font-mono text-sm text-lab-700">
                   ({equilibrium.player_a_payoff}, {equilibrium.player_b_payoff})
                 </span>
               </div>
-              <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+              <p className="mt-1.5 text-xs leading-relaxed text-lab-700">
                 {equilibrium.explanation}
               </p>
             </div>
@@ -240,19 +240,19 @@ export function ParetoPanel({ analysis }: { analysis: GameAnalysis }) {
               key={status.outcome}
               className={
                 status.is_pareto_optimal
-                  ? "rounded-lg border border-emerald-200 bg-emerald-50/40 p-3"
-                  : "rounded-lg border border-amber-200 bg-amber-50/40 p-3"
+                  ? "rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-3"
+                  : "rounded-lg border border-amber-400/30 bg-amber-400/10/40 p-3"
               }
             >
               <div className="flex items-center gap-2">
-                <span className="rounded bg-white px-1.5 py-0.5 font-mono text-xs font-semibold text-lab-700">
+                <span className="rounded bg-lab-100 px-1.5 py-0.5 font-mono text-xs font-semibold text-lab-700">
                   {status.outcome}
                 </span>
                 <Badge tone={status.is_pareto_optimal ? "success" : "warning"}>
                   {status.is_pareto_optimal ? "Pareto optimal" : "Pareto inferior"}
                 </Badge>
               </div>
-              <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+              <p className="mt-1.5 text-xs leading-relaxed text-lab-700">
                 {status.explanation}
               </p>
             </div>
@@ -260,11 +260,11 @@ export function ParetoPanel({ analysis }: { analysis: GameAnalysis }) {
         </div>
 
         {analysis.equilibrium_is_pareto_inferior ? (
-          <div className="rounded-lg border border-indigo-200 bg-indigo-50 p-3">
-            <p className="text-sm font-medium text-indigo-950">
+          <div className="rounded-lg border border-violet-500/30 bg-violet-500/10 p-3">
+            <p className="text-sm font-medium text-violet-100">
               Individual rationality and collective benefit disagree here.
             </p>
-            <p className="mt-1 text-xs leading-relaxed text-slate-700">
+            <p className="mt-1 text-xs leading-relaxed text-lab-800">
               At least one equilibrium of this matrix is Pareto inferior: the players end
               up somewhere they could both have improved on. That tension is what makes
               the Prisoner&apos;s Dilemma interesting.
@@ -278,9 +278,9 @@ export function ParetoPanel({ analysis }: { analysis: GameAnalysis }) {
 
 export function SummaryPanel({ analysis }: { analysis: GameAnalysis }) {
   return (
-    <div className="rounded-xl border border-lab-200 bg-white p-4">
-      <p className="text-sm leading-relaxed text-slate-700">{analysis.summary}</p>
-      <p className="mt-2 text-xs text-slate-500">
+    <div className="rounded-xl border border-lab-250 bg-lab-100 p-4">
+      <p className="text-sm leading-relaxed text-lab-800">{analysis.summary}</p>
+      <p className="mt-2 text-xs text-lab-600">
         Computed by the backend from the matrix currently on screen.
       </p>
     </div>

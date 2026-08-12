@@ -183,7 +183,7 @@ export function MatchSimulatorPage() {
                   help="Leave empty for an unseeded run."
                 />
 
-                <div className="space-y-2 rounded-lg border border-lab-200 p-3">
+                <div className="space-y-2 rounded-lg border border-lab-250 p-3">
                   <CheckboxField
                     label="Uncertain ending"
                     description="After each round, another follows with the probability below."
@@ -206,9 +206,9 @@ export function MatchSimulatorPage() {
                         step={0.01}
                         value={continuation}
                         onChange={(event) => setContinuation(Number(event.target.value))}
-                        className="mt-1 w-full accent-indigo-600"
+                        className="mt-1 w-full accent-violet-500"
                       />
-                      <p className="text-[11px] text-slate-500">
+                      <p className="text-[11px] text-lab-600">
                         The round count above becomes an upper bound. This models the
                         shadow of the future: with no known last round, the
                         backward-induction argument has nowhere to start.
@@ -279,7 +279,7 @@ export function MatchSimulatorPage() {
               <Card>
                 <CardBody className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
-                    <Trophy className="h-5 w-5 text-indigo-600" aria-hidden />
+                    <Trophy className="h-5 w-5 text-violet-400" aria-hidden />
                     <span className="text-sm font-medium text-lab-900">
                       {result.is_draw
                         ? "The match was a draw."
@@ -351,9 +351,9 @@ export function MatchSimulatorPage() {
                       {OUTCOME_ORDER.map((outcome) => (
                         <div
                           key={outcome}
-                          className="flex items-center justify-between gap-3 rounded-lg border border-lab-200 px-3 py-2"
+                          className="flex items-center justify-between gap-3 rounded-lg border border-lab-250 px-3 py-2"
                         >
-                          <dt className="text-sm text-slate-700">
+                          <dt className="text-sm text-lab-800">
                             <span className="mr-2 rounded bg-lab-100 px-1.5 py-0.5 font-mono text-xs">
                               {outcome}
                             </span>

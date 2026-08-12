@@ -87,24 +87,26 @@ export function LoginPage() {
     : registerForm.formState.isSubmitting;
 
   return (
-    <div className="min-h-screen bg-lab-50 lg:grid lg:grid-cols-2">
+    <div className="relative min-h-screen bg-lab-50 lg:grid lg:grid-cols-2">
+      <div className="app-backdrop" aria-hidden />
+      <div className="app-grain" aria-hidden />
       {/* Left: what this application is. Hidden on small screens. */}
-      <aside className="hidden flex-col justify-between bg-lab-950 px-10 py-12 text-white lg:flex">
+      <aside className="relative z-10 hidden flex-col justify-between overflow-hidden border-r border-lab-250 bg-gradient-to-br from-lab-75 via-lab-100 to-[#1b0f33] px-10 py-12 text-white lg:flex">
         <div className="flex items-center gap-2.5">
-          <span className="rounded-lg bg-indigo-600 p-1.5" aria-hidden>
+          <span className="rounded-lg bg-violet-600 p-1.5" aria-hidden>
             <Dices className="h-5 w-5" />
           </span>
           <div>
             <p className="text-sm font-semibold">Game Theory Lab</p>
-            <p className="text-[11px] text-lab-300">Prisoner&apos;s Dilemma</p>
+            <p className="text-[11px] text-lab-500">Prisoner&apos;s Dilemma</p>
           </div>
         </div>
 
         <div className="max-w-md">
-          <h1 className="text-3xl leading-snug font-semibold">
+          <h1 className="text-3xl leading-snug font-semibold text-gradient">
             Prisoner&apos;s Dilemma Strategy Tournament
           </h1>
-          <p className="mt-4 leading-relaxed text-lab-200">
+          <p className="mt-4 leading-relaxed text-lab-700">
             Analyse any payoff matrix, run Axelrod-style tournaments between six
             strategies, and record how real people play in a classroom experiment.
           </p>
@@ -115,45 +117,45 @@ export function LoginPage() {
               ["Simulation", "Iterated matches with an optional uncertain ending"],
               ["Experiment", "Simultaneous hidden choices with real participants"],
             ].map(([term, description]) => (
-              <div key={term} className="border-l-2 border-indigo-500 pl-3">
+              <div key={term} className="border-l-2 border-violet-500/70 pl-3">
                 <dt className="font-medium text-white">{term}</dt>
-                <dd className="text-lab-300">{description}</dd>
+                <dd className="text-lab-600">{description}</dd>
               </div>
             ))}
           </dl>
         </div>
 
-        <p className="text-xs text-lab-400">
+        <p className="text-xs text-lab-500">
           Based on Philip D. Straffin, <cite>Game Theory and Strategy</cite>
         </p>
       </aside>
 
       {/* Right: the form. */}
-      <main className="flex min-h-screen flex-col justify-center px-5 py-10 sm:px-10 lg:min-h-0">
+      <main className="relative z-10 flex min-h-screen flex-col justify-center px-5 py-10 sm:px-10 lg:min-h-0">
         <div className="mx-auto w-full max-w-md">
           {/* Compact brand for small screens, where the left panel is hidden. */}
           <div className="mb-8 flex items-center gap-2.5 lg:hidden">
-            <span className="rounded-lg bg-indigo-600 p-1.5 text-white" aria-hidden>
+            <span className="rounded-lg bg-violet-600 p-1.5 text-white" aria-hidden>
               <Dices className="h-5 w-5" />
             </span>
             <div>
               <p className="text-sm font-semibold text-lab-950">Game Theory Lab</p>
-              <p className="text-[11px] text-slate-500">Prisoner&apos;s Dilemma</p>
+              <p className="text-[11px] text-lab-600">Prisoner&apos;s Dilemma</p>
             </div>
           </div>
 
           <h2 className="text-2xl font-semibold text-lab-950">
             {isLogin ? "Sign in" : "Create a student account"}
           </h2>
-          <p className="mt-1.5 text-sm text-slate-600">
+          <p className="mt-1.5 text-sm text-lab-700">
             {isLogin
               ? "Teacher and admin accounts can create tournaments and run classroom experiments."
               : "New accounts are created with the STUDENT role. Ask an administrator for teacher access."}
           </p>
 
           {isAuthenticated && user ? (
-            <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-              <p className="text-sm font-medium text-emerald-900">
+            <div className="mt-6 rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-4">
+              <p className="text-sm font-medium text-emerald-200">
                 You are already signed in as {user.full_name} ({user.role}).
               </p>
               <Button className="mt-3" size="sm" onClick={() => navigate("/dashboard")}>
@@ -215,13 +217,13 @@ export function LoginPage() {
             )}
 
             {failure ? (
-              <div role="alert" className="rounded-lg border border-red-200 bg-red-50 p-3">
-                <p className="text-sm font-medium text-red-900">
+              <div role="alert" className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3">
+                <p className="text-sm font-medium text-rose-200">
                   {failure.isNetworkError ? "Backend unreachable" : "Could not sign you in"}
                 </p>
-                <p className="mt-0.5 text-xs text-red-800">{failure.message}</p>
+                <p className="mt-0.5 text-xs text-rose-300">{failure.message}</p>
                 {failure.details.length > 0 ? (
-                  <ul className="mt-1 list-inside list-disc text-xs text-red-700">
+                  <ul className="mt-1 list-inside list-disc text-xs text-rose-300">
                     {failure.details.map((detail, index) => (
                       <li key={index}>{detail}</li>
                     ))}
@@ -247,17 +249,17 @@ export function LoginPage() {
               setMode(isLogin ? "register" : "login");
               setFailure(null);
             }}
-            className="mt-4 text-sm font-medium text-indigo-600 hover:text-indigo-800"
+            className="mt-4 text-sm font-medium text-violet-400 hover:text-violet-300"
           >
             {isLogin
               ? "Need an account? Register instead"
               : "Already registered? Sign in instead"}
           </button>
 
-          <div className="mt-8 rounded-xl border border-lab-200 bg-white p-4">
+          <div className="mt-8 rounded-xl border border-lab-250 bg-lab-100/70 p-4 backdrop-blur-sm">
             <div className="flex items-start gap-2.5">
-              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-indigo-600" aria-hidden />
-              <div className="text-xs leading-relaxed text-slate-600">
+              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-violet-400" aria-hidden />
+              <div className="text-xs leading-relaxed text-lab-700">
                 <p className="font-medium text-lab-900">Roles</p>
                 <p className="mt-1">
                   <strong>ADMIN</strong> manages everything · <strong>TEACHER</strong> runs
@@ -270,12 +272,12 @@ export function LoginPage() {
 
           <Link
             to="/dashboard"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm text-slate-500 transition-colors hover:text-lab-900"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm text-lab-600 transition-colors hover:text-lab-900"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
             Continue without signing in
           </Link>
-          <p className="mt-1 text-xs text-slate-400">
+          <p className="mt-1 text-xs text-lab-500">
             Every page can be read while signed out. Only creating and running things
             needs an account.
           </p>

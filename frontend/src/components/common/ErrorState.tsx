@@ -24,8 +24,8 @@ export function ErrorState({ error, onRetry, title }: ErrorStateProps) {
       <span
         className={
           isOffline
-            ? "rounded-full bg-amber-50 p-3 text-amber-600"
-            : "rounded-full bg-red-50 p-3 text-red-600"
+            ? "rounded-full bg-amber-400/10 p-3 text-amber-400"
+            : "rounded-full bg-rose-500/10 p-3 text-rose-400"
         }
         aria-hidden
       >
@@ -36,10 +36,10 @@ export function ErrorState({ error, onRetry, title }: ErrorStateProps) {
         {title ?? (isOffline ? "Backend unreachable" : "Something went wrong")}
       </h3>
 
-      <p className="max-w-lg text-sm text-slate-600">{error.message}</p>
+      <p className="max-w-lg text-sm text-lab-700">{error.message}</p>
 
       {error.details.length > 0 ? (
-        <ul className="max-w-lg list-inside list-disc space-y-0.5 text-left text-xs text-slate-500">
+        <ul className="max-w-lg list-inside list-disc space-y-0.5 text-left text-xs text-lab-600">
           {error.details.map((detail, index) => (
             <li key={index}>{detail}</li>
           ))}

@@ -217,13 +217,13 @@ export function ExperimentDetailPage() {
                 description="Add at least two people before starting the session."
               />
             ) : (
-              <ul className="divide-y divide-lab-100">
+              <ul className="divide-y divide-lab-250">
                 {people.map((person) => (
                   <li key={person.id} className="flex items-center justify-between gap-3 py-2">
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-lab-900">{person.code}</p>
                       {person.display_name && !detail.anonymous_mode ? (
-                        <p className="text-xs text-slate-500">{person.display_name}</p>
+                        <p className="text-xs text-lab-600">{person.display_name}</p>
                       ) : null}
                     </div>
                     {isDraft ? (
@@ -244,7 +244,7 @@ export function ExperimentDetailPage() {
             )}
 
             {isDraft && people.length % 2 === 1 && people.length > 0 ? (
-              <p className="rounded-lg bg-amber-50 p-3 text-xs text-amber-900">
+              <p className="rounded-lg bg-amber-400/10 p-3 text-xs text-amber-200">
                 There is an odd number of participants, so one person will be left
                 unpaired when the session starts.
               </p>
@@ -273,14 +273,14 @@ export function ExperimentDetailPage() {
                 {pairs.map((pair) => (
                   <li
                     key={pair.id}
-                    className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-lab-200 p-3"
+                    className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-lab-250 p-3"
                   >
                     <div>
                       <p className="text-sm font-medium text-lab-900">
                         Pair {pair.pair_number}: {pair.participant_a_label} vs{" "}
                         {pair.participant_b_label}
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-lab-600">
                         {pair.rounds_recorded} of {detail.rounds} rounds recorded
                       </p>
                     </div>
