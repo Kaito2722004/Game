@@ -63,6 +63,21 @@ class Settings(BaseSettings):
     FIRST_ADMIN_EMAIL: str = "admin@example.com"
     FIRST_ADMIN_PASSWORD: str = "admin12345"
 
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def _strip_whitespace(cls, value: object) -> object:
+        """Remove whitespace pasted into the connection string.
+
+        A URL cannot contain a raw space — one would have to be written as
+        %20 — so any literal whitespace here came from copying the string out
+        of a dashboard. A single stray space after `//` is enough to make the
+        driver read the username as " neondb_owner" and fail authentication,
+        behind a hundred lines of traceback that never mention the space.
+        """
+        if isinstance(value, str):
+            return "".join(value.split())
+        return value
+
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
     def _split_origins(cls, value: object) -> object:

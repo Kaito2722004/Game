@@ -79,3 +79,39 @@ class TestSeedGuard:
         """Local setup must stay a one-command affair."""
         admin = seed_admin(db)
         assert admin is not None
+
+
+class TestDatabaseUrlWhitespace:
+    """A stray space in a pasted connection string must not reach the driver.
+
+    Copying a URL out of a hosting dashboard can pick up a space or a line
+    break. One space after `//` makes psycopg read the username as
+    " neondb_owner" and fail authentication, behind a traceback that never
+    mentions whitespace.
+    """
+
+    def test_space_after_the_scheme_is_removed(self) -> None:
+        settings = _settings(
+            DATABASE_URL="postgresql+psycopg:// neondb_owner:pw@host.neon.tech/db"
+        )
+        assert settings.DATABASE_URL == (
+            "postgresql+psycopg://neondb_owner:pw@host.neon.tech/db"
+        )
+
+    def test_surrounding_whitespace_and_newlines_are_removed(self) -> None:
+        settings = _settings(
+            DATABASE_URL="  postgresql+psycopg://u:p@host/db?sslmode=require\n"
+        )
+        assert settings.DATABASE_URL == "postgresql+psycopg://u:p@host/db?sslmode=require"
+
+    def test_the_username_then_parses_correctly(self) -> None:
+        from sqlalchemy.engine import make_url
+
+        settings = _settings(
+            DATABASE_URL="postgresql+psycopg:// neondb_owner:pw@host.neon.tech/db"
+        )
+        assert make_url(settings.DATABASE_URL).username == "neondb_owner"
+
+    def test_a_clean_url_is_left_alone(self) -> None:
+        clean = "postgresql+psycopg://user:pass@host:5432/db?sslmode=require"
+        assert _settings(DATABASE_URL=clean).DATABASE_URL == clean
