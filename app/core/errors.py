@@ -44,7 +44,7 @@ class ConflictError(AppError):
 
 
 class ValidationError(AppError):
-    status_code = status.HTTP_422_UNPROCESSABLE_ENTITY
+    status_code = status.HTTP_422_UNPROCESSABLE_CONTENT
     default_message = "Validation failed"
 
 
@@ -105,7 +105,7 @@ def register_exception_handlers(app: FastAPI) -> None:
     @app.exception_handler(SimulationError)
     async def _simulation_error(_: Request, exc: SimulationError) -> JSONResponse:
         return error_response(
-            status.HTTP_422_UNPROCESSABLE_ENTITY, "Validation failed", [str(exc)]
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "Validation failed", [str(exc)]
         )
 
     @app.exception_handler(RequestValidationError)
@@ -122,7 +122,7 @@ def register_exception_handlers(app: FastAPI) -> None:
             for error in exc.errors()
         ]
         return error_response(
-            status.HTTP_422_UNPROCESSABLE_ENTITY, "Validation failed", details
+            status.HTTP_422_UNPROCESSABLE_CONTENT, "Validation failed", details
         )
 
     @app.exception_handler(IntegrityError)
