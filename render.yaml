@@ -17,12 +17,18 @@ services:
 
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
 
-    # Migrations and seeding run at boot rather than at build time, because a
-    # Render build has no access to the runtime environment variables that
-    # hold the database URL.
-    preDeployCommand: python -m alembic upgrade head && python -m app.database.seed
-
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    # Migrations and seeding run as part of the start command, not as a
+    # preDeployCommand: pre-deploy is a paid-plan feature, and on the free plan
+    # it is silently ignored, which would leave the app serving a database with
+    # no tables in it.
+    #
+    # Running them on every start is safe. `alembic upgrade head` does nothing
+    # once the schema is current, and the seed checks for each row before
+    # inserting it, so neither repeats work or overwrites anything.
+    startCommand: >-
+      python -m alembic upgrade head &&
+      python -m app.database.seed &&
+      uvicorn app.main:app --host 0.0.0.0 --port $PORT
 
     healthCheckPath: /health
 
